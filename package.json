@@ -1,0 +1,38 @@
+{
+  "name": "breakout-sdk",
+  "version": "0.1.0",
+  "description": "SDK from Breakout to access its methods",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Breakout",
+    "Breakout-SDK",
+    "SDK",
+    "breakout-sdk",
+    "breakout-embed",
+    "Breakout Embed",
+    "Typescript",
+    "api"
+  ],
+  "author": "Subrat",
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
+    "eslint": "^8.21.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1",
+    "typescript": "4.7.4"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
