@@ -1,23 +1,29 @@
 {
   "name": "breakout-sdk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "SDK from Breakout to access its methods",
   "main": "dist/index.js",
+  "module": "dist/index.m.js",
+  "unpkg": "dist/index.umd.js",
   "types": "dist/index.d.ts",
-  "scripts": {
-    "prepare": "npm run build",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "exports": {
+    "require": "./dist/index.js",
+    "default": "./dist/index.modern.js"
   },
+  "scripts": {
+    "build": "rm -rf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
+    "dev": "microbundle --watch --tsconfig tsconfig.json --no-sourcemap"
+  },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "Breakout",
     "Breakout-SDK",
-    "SDK",
-    "breakout-sdk",
-    "breakout-embed",
-    "Breakout Embed",
+    "Process Automation",
     "Typescript",
-    "api"
+    "api",
+    "SDK"
   ],
   "author": "Subrat",
   "license": "ISC",
@@ -29,6 +35,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "microbundle": "^0.15.0",
     "prettier": "^2.7.1",
     "typescript": "4.7.4"
   },
