@@ -87,7 +87,7 @@ This is probably the first api that you'd be using. This Api creates a Linked Ac
 ```JavaScript
 Client.createLinkedAccount({
     account_id:"<Account Id of the user eg: example@someemail.com>",
-    embed_id:"<SDK ID assigned to the user>"
+    embed_id:"<Embed ID assigned to the user>"
 }).then(data=>{
     console.log("data", data)
 }).catch(e=>{
@@ -124,7 +124,7 @@ Breakout APis can be called using popular Async Await method too:
 ```JavaScript
 await Client.createLinkedAccount({
     account_id:"<Account Id of the user eg: example@someemail.com>",
-    embed_id:"<SDK ID assigned to the user>"
+    embed_id:"<Embed Id assigned to the user>"
 })
 ```
 
@@ -134,7 +134,7 @@ Using Try Catch Block:
 try{
     const data = await Client.createLinkedAccount({
                     account_id:"<Account Id of the user eg: example@someemail.com>",
-                    embed_id:"<SDK ID assigned to the user>"
+                    embed_id:"<Embed ID assigned to the user>"
                 })
     console.log(data) // {...data in json format}
 }catch(error){
