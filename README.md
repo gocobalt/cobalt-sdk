@@ -82,12 +82,12 @@ Once the Client has been initialized you can make use of Breakout APIs for getti
 **Examples:**
 
 * **Create Linked Account** - createLinkedAccount
-This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Breakout APIs. The api expects ```account_id``` & ```sdk_id```. You can call the API like: 
+This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Breakout APIs. The api expects ```account_id``` & ```embed_id```. You can call the API like: 
 
 ```JavaScript
 Client.createLinkedAccount({
     account_id:"<Account Id of the user eg: example@someemail.com>",
-    sdk_id:"<SDK ID assigned to the user>"
+    embed_id:"<SDK ID assigned to the user>"
 }).then(data=>{
     console.log("data", data)
 }).catch(e=>{
@@ -115,6 +115,31 @@ Client.installTemplate({
 }).catch(e=>{
     console.log("error", e.message)
 })
+```
+
+## Using Async Await 
+
+Breakout APis can be called using popular Async Await method too:
+
+```JavaScript
+await Client.createLinkedAccount({
+    account_id:"<Account Id of the user eg: example@someemail.com>",
+    embed_id:"<SDK ID assigned to the user>"
+})
+```
+
+Using Try Catch Block: 
+
+```JavaScript
+try{
+    const data = await Client.createLinkedAccount({
+                    account_id:"<Account Id of the user eg: example@someemail.com>",
+                    embed_id:"<SDK ID assigned to the user>"
+                })
+    console.log(data) // {...data in json format}
+}catch(error){
+    console.log(error.message)
+}
 ```
 
 ## Getting Help
