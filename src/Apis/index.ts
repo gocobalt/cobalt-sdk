@@ -1,11 +1,18 @@
 import { Base } from "../base";
-import { LinkedAccount, Template, createLinkedAccountPayload } from "./types";
+import { LinkedAccount, Template, createLinkedAccountPayload, getTokenForLinkedAccountPayload, getTokenForLinkedAccountResponse } from "./types";
 
 export class Apis extends Base {
   createLinkedAccount(createLinkedAccountPayload: createLinkedAccountPayload): Promise<LinkedAccount> {
     return this.request(`/linked-acc`,{
       method: "POST",
       body: JSON.stringify(createLinkedAccountPayload),
+    });
+  }
+
+  getTokenForLinkedAccount(payload:getTokenForLinkedAccountPayload): Promise<getTokenForLinkedAccountResponse> {
+    return this.request(`/auth/linked-account/token`,{
+      method: "GET",
+      body: JSON.stringify(payload),
     });
   }
 

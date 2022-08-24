@@ -95,6 +95,20 @@ Client.createLinkedAccount({
 })
 ```
 
+* **Get Token For A Linked Account** - getTokenForLinkedAccount
+This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Breakout APIs. The api expects ```linked_account_id``` & ```template_id```. You can call the API like: 
+
+```JavaScript
+Client.getTokenForLinkedAccount({
+    linked_account_id:"<Account Id of the user eg: example@someemail.com>",
+    template_id:"<Id of required template>"
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
 * **Get All Workflow Templates** - getAllTemplates
 This API returns all available Breakout Workflow Templates. You can call the API like: 
 ```JavaScript
