@@ -22,7 +22,12 @@ export class Apis extends Base {
     return this.request(`/template/published`, {}, params);
   }
 
-  getAllWorkflows(params?: paginationOptions): Promise<Workflows> {
+  getWorkflows(linked_account_id: string, options?: paginationOptions): Promise<Workflows> {
+    if(linked_account_id==="") throw new Error("linked_account_id is required")
+    const params = {
+      ...options,
+      linked_account_id
+    }
     return this.request(`/workflow/sdk`, {}, params);
   }
 
