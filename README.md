@@ -109,13 +109,38 @@ Client.getTokenForLinkedAccount({
 })
 ```
 
-* **Get All Workflow Templates** - getAllTemplates
-This API returns all available Breakout Workflow Templates. You can call the API like: 
+* **Get All Published Templates** - getAllTemplates
+This API returns all published Breakout Templates. You can call the API like: 
 ```JavaScript
 Client.getAllTemplates().then(data=>{
     console.log("data", data)
 }).catch(e=>{
     console.log("error", e.message)
+})
+```
+Use pagination by passing ```page``` and ```limit``` as parameters;
+```JavaScript
+Client.getAllTemplates({
+    page:5,
+    limit:10
+})
+```
+
+
+* **Get All Workflows** - getAllWorkflows
+This API returns all available Breakout Workflows. You can call the API like: 
+```JavaScript
+Client.getAllWorkflows().then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+Use pagination by passing ```page``` and ```limit``` as parameters;
+```JavaScript
+Client.getAllWorkflows({
+    page:5,
+    limit:10
 })
 ```
 

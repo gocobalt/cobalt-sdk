@@ -1,5 +1,7 @@
 import { Base } from "../base";
-import { LinkedAccount, Template, createLinkedAccountPayload, getTokenForLinkedAccountPayload, getTokenForLinkedAccountResponse } from "./types";
+import { LinkedAccount, Templates, Workflows, createLinkedAccountPayload,
+         getTokenForLinkedAccountPayload, getTokenForLinkedAccountResponse, 
+         templateObj, paginationOptions } from "./types";
 
 export class Apis extends Base {
   createLinkedAccount(createLinkedAccountPayload: createLinkedAccountPayload): Promise<LinkedAccount> {
@@ -16,11 +18,15 @@ export class Apis extends Base {
     });
   }
 
-  getAllTemplates(): Promise<Template[]> {
-    return this.request(`/template`);
+  getAllTemplates(params?: paginationOptions): Promise<Templates> {
+    return this.request(`/template/published`, {}, params);
   }
 
-  installTemplate(template_id: string): Promise<Template> {
+  getAllWorkflows(params?: paginationOptions): Promise<Workflows> {
+    return this.request(`/workflow/sdk`, {}, params);
+  }
+
+  installTemplate(template_id: string): Promise<templateObj> {
     return this.request(`/${template_id}/install`, {
       method: "PUT"
     });

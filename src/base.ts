@@ -14,7 +14,7 @@ export abstract class Base {
     this.sandbox = config.sandbox || false;
   }
 
-  protected request<T>(endpoint: string, options?: RequestInit): Promise<T> {
+  protected request<T>(endpoint: string, options?: RequestInit, params?:any): Promise<T> {
     let url:string;
     if(this.sandbox===true){
         url = `https://sandbox.getbreakout.com/api/v1${endpoint}`;
@@ -26,10 +26,12 @@ export abstract class Base {
       "Content-Type": "application/json",
       "x-api-key": this.apiKey,
     };
+
     const config = {
       ...options,
       data:options?.body,
       headers,
+      params
     };
 
     

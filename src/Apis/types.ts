@@ -4,12 +4,48 @@ export declare type LinkedAccount = {
     body: string;
     userId: number;
   };
+
+  export declare type templateObj = {
+    _id: string,
+    name: string,
+    createdAt: Date,
+    updatedAt: Date,
+    template_published: boolean
+  }
   
-  export declare type Template = {
-    title: string;
-    body: string;
-    userId: number;
+  export declare type Templates = {
+    docs: templateObj[];
+    totalDocs: number;
+    "limit": number,
+    "totalPages": number,
+    "page": number,
+    "pagingCounter": number,
+    "hasPrevPage": boolean,
+    "hasNextPage": boolean,
+    "prevPage": number,
+    "nextPage": number
   };
+
+  export declare type workflowObj = {
+    "_id": string,
+    "name": string,
+    "status": string,
+    "createdAt": Date,
+    "updatedAt": Date
+  }
+
+  export declare type Workflows = {
+    docs: workflowObj[];
+    totalDocs: number;
+    "limit": number,
+    "totalPages": number,
+    "page": number,
+    "pagingCounter": number,
+    "hasPrevPage": boolean,
+    "hasNextPage": boolean,
+    "prevPage": number,
+    "nextPage": number
+  }
 
 export declare type createLinkedAccountPayload = {
     account_id: string, 
@@ -19,6 +55,11 @@ export declare type createLinkedAccountPayload = {
 export declare type getTokenForLinkedAccountPayload = {
   linked_account_id: string, 
   template_id: string
+}
+
+export declare type paginationOptions = {
+  page?: number,
+  limit?: number
 }
 
 export declare type getTokenForLinkedAccountResponse = {
