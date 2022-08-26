@@ -18,7 +18,12 @@ export class Apis extends Base {
     });
   }
 
-  getAllTemplates(params?: paginationOptions): Promise<Templates> {
+  getAllTemplates(embed_id: string, options?: paginationOptions): Promise<Templates> {
+    if(embed_id==="") throw new Error("embed_id is required")
+    const params = {
+      ...options,
+      embed_id
+    }
     return this.request(`/template/published`, {}, params);
   }
 

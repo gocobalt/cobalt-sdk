@@ -110,9 +110,9 @@ Client.getTokenForLinkedAccount({
 ```
 
 * **Get All Published Templates** - getAllTemplates
-This API returns all published Breakout Templates. You can call the API like: 
+This API returns all published Breakout Templates. The method expects a ```embed_id``` as the mandatory first argument. You can call the API like: 
 ```JavaScript
-Client.getAllTemplates().then(data=>{
+Client.getAllTemplates("<embed_id>").then(data=>{
     console.log("data", data)
 }).catch(e=>{
     console.log("error", e.message)
@@ -120,7 +120,7 @@ Client.getAllTemplates().then(data=>{
 ```
 Use pagination by passing ```page``` and ```limit``` as parameters;
 ```JavaScript
-Client.getAllTemplates({
+Client.getAllTemplates("<embed_id>", {
     page:5,
     limit:10
 })
