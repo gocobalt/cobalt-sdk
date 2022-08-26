@@ -1,6 +1,6 @@
 {
   "name": "breakout-sdk",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "SDK from Breakout to access its methods",
   "main": "dist/index.js",
   "module": "dist/index.m.js",
