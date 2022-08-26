@@ -18,11 +18,11 @@ export class Apis extends Base {
     });
   }
 
-  getAllTemplates(embed_id: string, options?: paginationOptions): Promise<Templates> {
-    if(embed_id==="") throw new Error("embed_id is required")
+  getAllTemplates(linked_account_id: string, options?: paginationOptions): Promise<Templates> {
+    if(linked_account_id==="") throw new Error("linked_account_id is required")
     const params = {
       ...options,
-      embed_id
+      linked_account_id
     }
     return this.request(`/template/published`, {}, params);
   }
