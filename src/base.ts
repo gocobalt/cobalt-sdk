@@ -17,9 +17,9 @@ export abstract class Base {
   protected request<T>(endpoint: string, options?: RequestInit, params?:any): Promise<T> {
     let url:string;
     if(this.sandbox===true){
-        url = `https://sandbox.getbreakout.com/api/v1${endpoint}`;
+        url = `https://sandbox.gocobalt.io/api/v1${endpoint}`;
     }else{
-        url = `https://embedapi.getbreakout.com/api/v1${endpoint}`;
+        url = `https://embedapi.gocobalt.io/api/v1${endpoint}`;
     }
 
     const headers = {
