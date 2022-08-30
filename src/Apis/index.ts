@@ -13,7 +13,7 @@ export class Apis extends Base {
 
   getTokenForLinkedAccount(payload:getTokenForLinkedAccountPayload): Promise<getTokenForLinkedAccountResponse> {
     return this.request(`/auth/linked-account/token`,{
-      method: "GET",
+      method: "POST",
       body: JSON.stringify(payload),
     });
   }
@@ -36,9 +36,4 @@ export class Apis extends Base {
     return this.request(`/workflow/sdk`, {}, params);
   }
 
-  installTemplate(template_id: string): Promise<templateObj> {
-    return this.request(`/${template_id}/install`, {
-      method: "PUT"
-    });
-  }
 }
