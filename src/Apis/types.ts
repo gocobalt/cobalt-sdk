@@ -54,7 +54,6 @@ export declare type createLinkedAccountPayload = {
 
 export declare type getTokenForLinkedAccountPayload = {
   linked_account_id: string, 
-  template_id: string
 }
 
 export declare type paginationOptions = {
