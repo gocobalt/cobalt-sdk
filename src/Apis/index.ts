@@ -5,14 +5,14 @@ import { LinkedAccount, Templates, Workflows, createLinkedAccountPayload,
 
 export class Apis extends Base {
   createLinkedAccount(createLinkedAccountPayload: createLinkedAccountPayload): Promise<LinkedAccount> {
-    return this.request(`/linked-acc`,{
+    return this.request(`/api/v1/linked-acc`,{
       method: "POST",
       body: JSON.stringify(createLinkedAccountPayload),
     });
   }
 
   getTokenForLinkedAccount(payload:getTokenForLinkedAccountPayload): Promise<getTokenForLinkedAccountResponse> {
-    return this.request(`/auth/linked-account/token`,{
+    return this.request(`/api/v1/auth/linked-account/token`,{
       method: "POST",
       body: JSON.stringify(payload),
     });
@@ -24,7 +24,7 @@ export class Apis extends Base {
       ...options,
       linked_account_id
     }
-    return this.request(`/template/published`, {}, params);
+    return this.request(`/api/v1/template/published`, {}, params);
   }
 
   getWorkflows(linked_account_id: string, options?: paginationOptions): Promise<Workflows> {
@@ -33,7 +33,12 @@ export class Apis extends Base {
       ...options,
       linked_account_id
     }
-    return this.request(`/workflow/sdk`, {}, params);
+    return this.request(`/api/v1/workflow/sdk`, {}, params);
   }
 
+  deleteWorkflow(workflow_id: string): Promise<any> {
+    return this.request(`/api/v2/workflow/${workflow_id}`, {
+      method: "DELETE",
+    });
+  }
 }

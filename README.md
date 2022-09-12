@@ -143,6 +143,16 @@ Client.getWorkflows("<linked_account_id>", {
 })
 ```
 
+* **Delete a Workflow** - getAllWorkflows
+This API Deletes a Breakout Workflow. The method expects a ```workflow_id``` as the mandatory first argument. You can call the API like: 
+```JavaScript
+Client.deleteWorkflow("<workflow_id>").then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
 
 ## Using Async Await 
 
