@@ -1,7 +1,7 @@
 {
-  "name": "breakout-sdk",
+  "name": "@gocobalt.io/cobalt",
   "version": "0.1.15",
-  "description": "SDK from Breakout to access its methods",
+  "description": "SDK from Cobalt to access integration apis",
   "main": "dist/index.js",
   "module": "dist/index.m.js",
   "unpkg": "dist/index.umd.js",
@@ -18,12 +18,15 @@
     "dist"
   ],
   "keywords": [
-    "Breakout",
-    "Breakout-SDK",
+    "Cobalt",
+    "Cobalt-SDK",
     "Process Automation",
     "Typescript",
     "api",
-    "SDK"
+    "SDK",
+    "Cobalt",
+    "cobalt",
+    "cobalt-sdk"
   ],
   "author": "Subrat",
   "license": "ISC",
@@ -41,5 +44,13 @@
   },
   "dependencies": {
     "axios": "^0.27.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cobalt-Embed/Cobalt-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Cobalt-Embed/Cobalt-sdk/issues"
+  },
+  "homepage": "https://github.com/Cobalt-Embed/Cobalt-sdk#readme"
 }

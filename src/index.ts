@@ -2,9 +2,9 @@ import { Base } from "./base";
 import { Apis } from "./Apis";
 import { applyMixins } from "./utils";
 
-class Breakout extends Base {}
-interface Breakout extends Apis {}
+class Cobalt extends Base {}
+interface Cobalt extends Apis {}
 
-applyMixins(Breakout, [Apis]);
+applyMixins(Cobalt, [Apis]);
 
-export default Breakout;
+export default Cobalt;

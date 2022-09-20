@@ -1,8 +1,8 @@
-# Breakout SDK
+# Cobalt SDK
 
-With Breakout you can Integrate workflows with your favourite cloud applications. Create processes and bring teams, tools, customers together so business can run on autopilot and more confidently—all on a single platform. 
+With Cobalt you can Integrate workflows with your favourite cloud applications. Create processes and bring teams, tools, customers together so business can run on autopilot and more confidently—all on a single platform. 
 
-_Visit **[getbreakout.com](https://www.getbreakout.com "Breakout Home")** for more details_
+_Visit **[gocobalt.io](https://www.gocobalt.io/ "Cobalt Home")** for more details_
 
 
 
@@ -10,15 +10,15 @@ _Visit **[getbreakout.com](https://www.getbreakout.com "Breakout Home")** for mo
 
 ### How to install
 
-The preferred way to install the Breakout SDK for Node.js is to use the npm package manager. Simply type the following into a terminal window:
+The preferred way to install the Cobalt SDK for Node.js is to use the npm package manager. Simply type the following into a terminal window:
 
 ~~~
- npm i breakout-sdk 
+ npm i @gobobalt.io/cobalt
 ~~~
 
 ### Usage
 
-The Breakout SDK for JavaScript bundles TypeScript definition files for use in TypeScript projects. We aim to keep these TypeScript definition files updated with each release for any public api.
+The Cobalt SDK for JavaScript bundles TypeScript definition files for use in TypeScript projects. We aim to keep these TypeScript definition files updated with each release for any public api.
 
 #### **Pre-requisites for Typescript**
 
@@ -30,12 +30,12 @@ The Breakout SDK for JavaScript bundles TypeScript definition files for use in T
     npm install --save-dev @types/node
     ~~~
 
-To use the TypeScript definition files within a Node.js project, simply import breakout-sdk as you normally would.
+To use the TypeScript definition files within a Node.js project, simply import Cobalt-sdk as you normally would.
 
 **In a TypeScript file:**
 
 ```TypeScript
-import Breakout from 'breakout-sdk';
+import Cobalt from '@gobobalt.io/cobalt';
 ```
 
 >NOTE: You might need to add "esModuleInterop": true to compilerOptions of your tsconfig.json.
@@ -43,46 +43,46 @@ import Breakout from 'breakout-sdk';
 
 **In a JavaScript file:**
 ```JavaScript
-const Breakout = require('breakout-sdk');
+const Cobalt = require('@gobobalt.io/cobalt');
 ```
 
-### Initializing Breakout Client
-To use the Breakout SDK you first need to Sign Up with getbreakout & get the API key from Dashboard.
+### Initializing Cobalt Client
+To use the Cobalt SDK you first need to Sign Up with getCobalt & get the API key from Dashboard.
 
-_Visit **[getbreakout.com](https://www.getbreakout.com "Breakout Home")** to get the API key now!_
+_Visit **[gocobalt.io](https://www.gocobalt.io/ "Cobalt Home")** to get the API key now!_
 
-Once you have you api key, you can initialize the Breakout Client by:
+Once you have you api key, you can initialize the Cobalt Client by:
 
 
 TypeScript :
 ```TypeScript
-import Breakout from 'breakout-sdk';
+import Cobalt from '@gobobalt.io/cobalt';
 
-const Client:Breakout = new Breakout({
+const Client:Cobalt = new Cobalt({
     apiKey:"<Your Api Key>"
 });
 ```
 
 JavaScript :
 ```JavaScript
-const Breakout = require('breakout-sdk');
+const Cobalt = require('@gobobalt.io/cobalt');
 
-const Client = new Breakout({
+const Client = new Cobalt({
     apiKey:"<Your Api Key>"
 });
 ```
 
-## Using Breakout APIs
+## Using Cobalt APIs
 
-Once the Client has been initialized you can make use of Breakout APIs for getting things done and running for your platform. Please find the detailed list and documentations of the Breakout APIs at : **[https://getbreakout.com/developers](https://www.getbreakout.com/developers "Breakout API Documentation")**
+Once the Client has been initialized you can make use of Cobalt APIs for getting things done and running for your platform. Please find the detailed list and documentations of the Cobalt APIs at : **[https://gocobalt.io/developers](https://www.gocobalt.io/developers "Cobalt API Documentation")**
 
->NOTE: Breakout APIs require API Key to be accessed. _Visit **[getbreakout.com](https://www.getbreakout.com "Breakout Home")** to get the API key now!_
+>NOTE: Cobalt APIs require API Key to be accessed. _Visit **[gocobalt.io](https://www.gocobalt.io "Cobalt Home")** to get the API key now!_
 
 
 **Examples:**
 
 * **Create Linked Account** - createLinkedAccount
-This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Breakout APIs. The api expects ```account_id``` & ```embed_id```. You can call the API like: 
+This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Cobalt APIs. The api expects ```account_id``` & ```embed_id```. You can call the API like: 
 
 ```JavaScript
 Client.createLinkedAccount({
@@ -96,7 +96,7 @@ Client.createLinkedAccount({
 ```
 
 * **Get Token For A Linked Account** - getTokenForLinkedAccount
-This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Breakout APIs. The api expects ```linked_account_id```. You can call the API like: 
+This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Cobalt APIs. The api expects ```linked_account_id```. You can call the API like: 
 
 ```JavaScript
 Client.getTokenForLinkedAccount({
@@ -109,7 +109,7 @@ Client.getTokenForLinkedAccount({
 ```
 
 * **Get All Published Templates** - getAllTemplates
-This API returns all published Breakout Templates. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
+This API returns all published Cobalt Templates. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
 ```JavaScript
 Client.getAllTemplates("<linked_account_id>").then(data=>{
     console.log("data", data)
@@ -127,7 +127,7 @@ Client.getAllTemplates("<linked_account_id>", {
 
 
 * **Get All Workflows** - getAllWorkflows
-This API returns all available Breakout Workflows. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
+This API returns all available Cobalt Workflows. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
 ```JavaScript
 Client.getWorkflows("<linked_account_id>").then(data=>{
     console.log("data", data)
@@ -144,7 +144,7 @@ Client.getWorkflows("<linked_account_id>", {
 ```
 
 * **Delete a Workflow** - getAllWorkflows
-This API Deletes a Breakout Workflow. The method expects a ```workflow_id``` as the mandatory first argument. You can call the API like: 
+This API Deletes a Cobalt Workflow. The method expects a ```workflow_id``` as the mandatory first argument. You can call the API like: 
 ```JavaScript
 Client.deleteWorkflow("<workflow_id>").then(data=>{
     console.log("data", data)
@@ -156,7 +156,7 @@ Client.deleteWorkflow("<workflow_id>").then(data=>{
 
 ## Using Async Await 
 
-Breakout APis can be called using popular Async Await method too:
+Cobalt APis can be called using popular Async Await method too:
 
 ```JavaScript
 await Client.createLinkedAccount({
@@ -181,8 +181,8 @@ try{
 
 ## Getting Help
 
-The best way to interact with our team is through [GitHub](https://github.com/Breakout-Embed/breakout-sdk "Breakout SDK GitHub"). You can open an issue and choose from one of our templates for bug reports, feature requests or guidance.
+The best way to interact with our team is through [GitHub](https://github.com/Breakout-Embed/Breakout-sdk "Cobalt SDK GitHub"). You can open an issue and choose from one of our templates for bug reports, feature requests or guidance.
 
 ## Contributing
 
-We welcome community contributions and pull requests. For information on how to set up a development environment and submit code please visit https://www.getbreakout.com/developers/community/help.
+We welcome community contributions and pull requests. For information on how to set up a development environment and submit code please visit https://www.gocobalt.io/privacy-policy.
