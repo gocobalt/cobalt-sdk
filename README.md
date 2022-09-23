@@ -13,7 +13,7 @@ _Visit **[gocobalt.io](https://www.gocobalt.io/ "Cobalt Home")** for more detail
 The preferred way to install the Cobalt SDK for Node.js is to use the npm package manager. Simply type the following into a terminal window:
 
 ~~~
- npm i @gobobalt.io/cobalt
+ npm i @cobaltio/cobalt
 ~~~
 
 ### Usage
@@ -35,7 +35,7 @@ To use the TypeScript definition files within a Node.js project, simply import C
 **In a TypeScript file:**
 
 ```TypeScript
-import Cobalt from '@gobobalt.io/cobalt';
+import Cobalt from '@cobaltio/cobalt';
 ```
 
 >NOTE: You might need to add "esModuleInterop": true to compilerOptions of your tsconfig.json.
@@ -43,7 +43,7 @@ import Cobalt from '@gobobalt.io/cobalt';
 
 **In a JavaScript file:**
 ```JavaScript
-const Cobalt = require('@gobobalt.io/cobalt');
+const Cobalt = require('@cobaltio/cobalt');
 ```
 
 ### Initializing Cobalt Client
@@ -56,7 +56,7 @@ Once you have you api key, you can initialize the Cobalt Client by:
 
 TypeScript :
 ```TypeScript
-import Cobalt from '@gobobalt.io/cobalt';
+import Cobalt from '@cobaltio/cobalt';
 
 const Client:Cobalt = new Cobalt({
     apiKey:"<Your Api Key>"
@@ -65,7 +65,7 @@ const Client:Cobalt = new Cobalt({
 
 JavaScript :
 ```JavaScript
-const Cobalt = require('@gobobalt.io/cobalt');
+const Cobalt = require('@cobaltio/cobalt');
 
 const Client = new Cobalt({
     apiKey:"<Your Api Key>"
@@ -181,7 +181,7 @@ try{
 
 ## Getting Help
 
-The best way to interact with our team is through [GitHub](https://github.com/Breakout-Embed/Breakout-sdk "Cobalt SDK GitHub"). You can open an issue and choose from one of our templates for bug reports, feature requests or guidance.
+The best way to interact with our team is through [GitHub](https://github.com/Breakout-Embed/cobalt-sdk "Cobalt SDK GitHub"). You can open an issue and choose from one of our templates for bug reports, feature requests or guidance.
 
 ## Contributing
 
