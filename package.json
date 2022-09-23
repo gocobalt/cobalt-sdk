@@ -1,5 +1,5 @@
 {
-  "name": "@gocobalt.io/cobalt",
+  "name": "@cobaltio/cobalt",
   "version": "0.1.15",
   "description": "SDK from Cobalt to access integration apis",
   "main": "dist/index.js",
