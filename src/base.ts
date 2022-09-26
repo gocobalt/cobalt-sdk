@@ -17,9 +17,9 @@ export abstract class Base {
   protected request<T>(endpoint: string, options?: RequestInit, params?:any): Promise<T> {
     let url:string;
     if(this.sandbox===true){
-        url = `https://sandbox.gocobalt.io${endpoint}`;
-    }else{
         url = `https://embedapi.gocobalt.io${endpoint}`;
+    }else{
+        url = `https://api.gocobalt.io${endpoint}`;
     }
 
     const headers = {
