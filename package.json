@@ -1,6 +1,6 @@
 {
   "name": "@cobaltio/cobalt",
-  "version": "0.1.15",
+  "version": "0.1.20",
   "description": "SDK from Cobalt to access integration apis",
   "main": "dist/index.js",
   "module": "dist/index.m.js",
@@ -12,7 +12,8 @@
   },
   "scripts": {
     "build": "rm -rf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
-    "dev": "microbundle --watch --tsconfig tsconfig.json --no-sourcemap"
+    "dev": "microbundle --watch --tsconfig tsconfig.json --no-sourcemap",
+    "test": "npm run build && echo \"TEST DONE\""
   },
   "files": [
     "dist"

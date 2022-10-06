@@ -181,7 +181,7 @@ try{
 
 ## Getting Help
 
-The best way to interact with our team is through [GitHub](https://github.com/Breakout-Embed/Breakout-sdk "Cobalt SDK GitHub"). You can open an issue and choose from one of our templates for bug reports, feature requests or guidance.
+The best way to interact with our team is through [GitHub](https://github.com/Breakout-Embed/cobalt-sdk "Cobalt SDK GitHub"). You can open an issue and choose from one of our templates for bug reports, feature requests or guidance.
 
 ## Contributing
 
