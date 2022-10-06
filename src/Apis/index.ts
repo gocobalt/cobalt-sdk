@@ -33,7 +33,9 @@ export class Apis extends Base {
       ...options,
       linked_account_id
     }
-    return this.request(`/api/v1/workflow/sdk`, {}, params);
+    return this.request(`/api/v1/workflow/sdk`,{
+      method: "POST"
+    },params);
   }
 
   getApplications(linked_account_id: string, options?: paginationOptions): Promise<Workflows> {
