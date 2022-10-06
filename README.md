@@ -143,6 +143,23 @@ Client.getWorkflows("<linked_account_id>", {
 })
 ```
 
+* **Get All Applications for an Embed** - getApplications
+This API returns all available Cobalt Applications. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
+```JavaScript
+Client.getApplications("<linked_account_id>").then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+Use pagination by passing ```page``` and ```limit``` as parameters;
+```JavaScript
+Client.getApplications("<linked_account_id>", {
+    page:5,
+    limit:10
+})
+```
+
 * **Delete a Workflow** - getAllWorkflows
 This API Deletes a Cobalt Workflow. The method expects a ```workflow_id``` as the mandatory first argument. You can call the API like: 
 ```JavaScript

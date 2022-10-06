@@ -36,6 +36,15 @@ export class Apis extends Base {
     return this.request(`/api/v1/workflow/sdk`, {}, params);
   }
 
+  getApplications(linked_account_id: string, options?: paginationOptions): Promise<Workflows> {
+    if(linked_account_id==="") throw new Error("linked_account_id is required")
+    const params = {
+      ...options,
+      account_id: linked_account_id
+    }
+    return this.request(`/api/v1/linked-acc/application/embed`, {}, params);
+  }
+
   deleteWorkflow(workflow_id: string): Promise<any> {
     return this.request(`/api/v2/workflow/${workflow_id}`, {
       method: "DELETE",
