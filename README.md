@@ -125,6 +125,23 @@ Client.getAllTemplates("<linked_account_id>", {
 })
 ```
 
+* **Get All Templates for connected applications of a Linked Account** - getTemplatesForConnectedApps
+This API returns all published Cobalt Templates. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
+```JavaScript
+Client.getTemplatesForConnectedApps("<linked_account_id>").then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+Use pagination by passing ```page``` and ```limit``` as parameters;
+```JavaScript
+Client.getTemplatesForConnectedApps("<linked_account_id>", {
+    page:5,
+    limit:10
+})
+```
+
 
 * **Get All Workflows** - getAllWorkflows
 This API returns all available Cobalt Workflows. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
