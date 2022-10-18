@@ -159,6 +159,16 @@ Client.getWorkflows("<linked_account_id>", {
     limit:10
 })
 ```
+You may pass additional query such as ```udf``` as a parameter;
+```Javascript
+Client.getWorkflows("<linked_account_id>", {
+    page:5,
+    limit:10,
+    udf:{
+        id1: "EVENTID-1"
+    }
+})
+```
 
 * **Get All Applications for an Embed** - getApplications
 This API returns all available Cobalt Applications. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
