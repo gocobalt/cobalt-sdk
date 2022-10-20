@@ -48,7 +48,7 @@ export declare type LinkedAccount = {
   }
 
 export declare type createLinkedAccountPayload = {
-    account_id: string, 
+    linked_account_id: string, 
     embed_id: string
 }
 

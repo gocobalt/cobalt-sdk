@@ -12,7 +12,7 @@ export class Apis extends Base {
   }
 
   getTokenForLinkedAccount(payload:getTokenForLinkedAccountPayload): Promise<getTokenForLinkedAccountResponse> {
-    return this.request(`/api/v1/auth/linked-account/token`,{
+    return this.request(`/api/v1/auth/linked-acc/token`,{
       method: "POST",
       body: JSON.stringify(payload),
     });
@@ -31,7 +31,7 @@ export class Apis extends Base {
     if(linked_account_id==="") throw new Error("linked_account_id is required")
     const params = {
       ...options,
-      account_id: linked_account_id
+      linked_account_id
     }
     return this.request(`/api/v1/linked-acc/template`, {}, params);
   }
@@ -42,16 +42,14 @@ export class Apis extends Base {
       ...options,
       linked_account_id
     }
-    return this.request(`/api/v1/workflow/sdk`,{
-      method: "POST"
-    },params);
+    return this.request(`/api/v2/workflow`,{},params);
   }
 
   getApplications(linked_account_id: string, options?: paginationOptions): Promise<Workflows> {
     if(linked_account_id==="") throw new Error("linked_account_id is required")
     const params = {
       ...options,
-      account_id: linked_account_id
+      linked_account_id
     }
     return this.request(`/api/v1/linked-acc/application/embed`, {}, params);
   }
