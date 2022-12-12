@@ -1,7 +1,7 @@
 import { Base } from "../base";
 import { LinkedAccount, Templates, Workflows, createLinkedAccountPayload,
          getTokenForLinkedAccountPayload, getTokenForLinkedAccountResponse, 
-         templateObj, paginationOptions } from "./types";
+         templateObj, paginationOptions, updateAuthCredentialsPayload } from "./types";
 
 export class Apis extends Base {
   createLinkedAccount(createLinkedAccountPayload: createLinkedAccountPayload): Promise<LinkedAccount> {
@@ -57,6 +57,13 @@ export class Apis extends Base {
   deleteWorkflow(workflow_id: string): Promise<any> {
     return this.request(`/api/v2/workflow/${workflow_id}`, {
       method: "DELETE",
+    });
+  }
+  
+  updateAuthCredentials(app_id: string, payload:updateAuthCredentialsPayload): Promise<any> {
+    return this.request(`/api/v1/custom/${app_id}/credentials`, {
+      method: "POST",
+      body: JSON.stringify(payload),
     });
   }
 }

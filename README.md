@@ -81,7 +81,7 @@ Once the Client has been initialized you can make use of Cobalt APIs for getting
 
 **Examples:**
 
-* **Create Linked Account** - createLinkedAccount
+* **Create Linked Account** - ```createLinkedAccount```.
 This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Cobalt APIs. The api expects ```account_id``` & ```embed_id```. You can call the API like: 
 
 ```JavaScript
@@ -95,7 +95,7 @@ Client.createLinkedAccount({
 })
 ```
 
-* **Get Token For A Linked Account** - getTokenForLinkedAccount
+* **Get Token For A Linked Account** - ```getTokenForLinkedAccount```.
 This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Cobalt APIs. The api expects ```linked_account_id```. You can call the API like: 
 
 ```JavaScript
@@ -108,7 +108,25 @@ Client.getTokenForLinkedAccount({
 })
 ```
 
-* **Get All Published Templates** - getAllTemplates
+
+* **Update App Credentials for a Linked Account** - ```updateAuthCredentials```.
+This Api can be used if you do not want your users to authenticate while Configuring your cobalt app on your platform. This Api saves users' auth credentials required to access your platforms apis on behalf of your users. Call this API whenever you are generating new auth credentials for your user. The api expects ```linked_account_id```, ```app_id``` & ```auth_credentials```. You can call the API like: 
+
+```JavaScript
+Client.updateAuthCredentials("< app_id >", {
+    linked_account_id:"<Account Id of the user eg: example@someemail.com>",
+    auth_credentials: {
+        //example - Bearer Tokens
+        "Authorization": "Bearer <Some Token>"
+    }
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+* **Get All Published Templates** - ```getAllTemplates```.
 This API returns all published Cobalt Templates. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
 ```JavaScript
 Client.getAllTemplates("<linked_account_id>").then(data=>{
@@ -125,7 +143,7 @@ Client.getAllTemplates("<linked_account_id>", {
 })
 ```
 
-* **Get All Templates for connected applications of a Linked Account** - getTemplatesForConnectedApps
+* **Get All Templates for connected applications of a Linked Account** - ```getTemplatesForConnectedApps```.
 This API returns all published Cobalt Templates. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
 ```JavaScript
 Client.getTemplatesForConnectedApps("<linked_account_id>").then(data=>{
@@ -143,7 +161,7 @@ Client.getTemplatesForConnectedApps("<linked_account_id>", {
 ```
 
 
-* **Get All Workflows** - getAllWorkflows
+* **Get All Workflows** - ```getAllWorkflows```. 
 This API returns all available Cobalt Workflows. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
 ```JavaScript
 Client.getWorkflows("<linked_account_id>").then(data=>{
@@ -170,7 +188,7 @@ Client.getWorkflows("<linked_account_id>", {
 })
 ```
 
-* **Get All Applications for an Embed** - getApplications
+* **Get All Applications for an Embed** - ```getApplications```. 
 This API returns all available Cobalt Applications. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
 ```JavaScript
 Client.getApplications("<linked_account_id>").then(data=>{
@@ -187,7 +205,7 @@ Client.getApplications("<linked_account_id>", {
 })
 ```
 
-* **Delete a Workflow** - getAllWorkflows
+* **Delete a Workflow** - ```getAllWorkflows```. 
 This API Deletes a Cobalt Workflow. The method expects a ```workflow_id``` as the mandatory first argument. You can call the API like: 
 ```JavaScript
 Client.deleteWorkflow("<workflow_id>").then(data=>{

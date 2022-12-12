@@ -64,3 +64,8 @@ export declare type paginationOptions = {
 export declare type getTokenForLinkedAccountResponse = {
   token: string
 }
+
+export declare type updateAuthCredentialsPayload = {
+  linked_account_id: string,
+  auth_credentials: any
+}
