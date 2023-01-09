@@ -126,10 +126,10 @@ Client.updateAuthCredentials("< app_id >", {
 })
 ```
 
-* **Get All Published Templates** - ```getAllTemplates```.
-This API returns all published Cobalt Templates. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
+* **Get All Published Templates** - ```getAllPublishedTemplates```.
+This API returns all published Cobalt Templates. You can call the API like: 
 ```JavaScript
-Client.getAllTemplates("<linked_account_id>").then(data=>{
+Client.getAllPublishedTemplates().then(data=>{
     console.log("data", data)
 }).catch(e=>{
     console.log("error", e.message)
@@ -137,7 +137,7 @@ Client.getAllTemplates("<linked_account_id>").then(data=>{
 ```
 Use pagination by passing ```page``` and ```limit``` as parameters;
 ```JavaScript
-Client.getAllTemplates("<linked_account_id>", {
+Client.getAllPublishedTemplates({
     page:5,
     limit:10
 })
@@ -197,11 +197,12 @@ Client.getApplications("<linked_account_id>").then(data=>{
     console.log("error", e.message)
 })
 ```
-Use pagination by passing ```page``` and ```limit``` as parameters;
+Use pagination by passing ```page``` and ```limit``` as parameters. By default the API provides all the applications for the linked account. However, if you want to get just the published applications, pass the ```for_published_template``` parameter as true in the options.
 ```JavaScript
 Client.getApplications("<linked_account_id>", {
     page:5,
-    limit:10
+    limit:10,
+    for_published_template:true
 })
 ```
 
