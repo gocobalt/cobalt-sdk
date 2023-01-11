@@ -82,12 +82,11 @@ Once the Client has been initialized you can make use of Cobalt APIs for getting
 **Examples:**
 
 * **Create Linked Account** - ```createLinkedAccount```.
-This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Cobalt APIs. The api expects ```account_id``` & ```embed_id```. You can call the API like: 
+This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Cobalt APIs. The api expects ```linked_account_id```. You can call the API like: 
 
 ```JavaScript
 Client.createLinkedAccount({
-    account_id:"<Account Id of the user eg: example@someemail.com>",
-    embed_id:"<Embed ID assigned to the user>"
+    linked_account_id:"<Linked account Id of the user eg: example@some_email.com>"
 }).then(data=>{
     console.log("data", data)
 }).catch(e=>{
@@ -188,7 +187,7 @@ Client.getWorkflows("<linked_account_id>", {
 })
 ```
 
-* **Get All Applications for an Embed** - ```getApplications```. 
+* **Get All Applications for a linked account** - ```getApplications```. 
 This API returns all available Cobalt Applications. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
 ```JavaScript
 Client.getApplications("<linked_account_id>").then(data=>{
@@ -223,8 +222,7 @@ Cobalt APis can be called using popular Async Await method too:
 
 ```JavaScript
 await Client.createLinkedAccount({
-    account_id:"<Account Id of the user eg: example@someemail.com>",
-    embed_id:"<Embed Id assigned to the user>"
+    linked_account_id:"<Account Id of the user eg: example@some_email.com>"
 })
 ```
 
@@ -233,8 +231,7 @@ Using Try Catch Block:
 ```JavaScript
 try{
     const data = await Client.createLinkedAccount({
-                    account_id:"<Account Id of the user eg: example@someemail.com>",
-                    embed_id:"<Embed ID assigned to the user>"
+                    linked_account_id:"<Account Id of the user eg: example@some_email.com>"
                 })
     console.log(data) // {...data in json format}
 }catch(error){
