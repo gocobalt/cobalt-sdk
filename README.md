@@ -134,6 +134,14 @@ Client.getAllPublishedTemplates().then(data=>{
     console.log("error", e.message)
 })
 ```
+
+If you want to get templates consisting a particular application, you can specify the ```associated_app_id``` as a parameter.
+```JavaScript
+Client.getAllPublishedTemplates({
+    associated_app_id: "<application id>"
+})
+```
+
 Use pagination by passing ```page``` and ```limit``` as parameters;
 ```JavaScript
 Client.getAllPublishedTemplates({
