@@ -1,7 +1,7 @@
 import { Base } from "../base";
 import { LinkedAccount, Templates, Workflows, createLinkedAccountPayload,
          getTokenForLinkedAccountPayload, getTokenForLinkedAccountResponse, 
-         templateObj, paginationOptions, updateAuthCredentialsPayload, getApplicationsOptions } from "./types";
+         templateObj, paginationOptions, updateAuthCredentialsPayload, getApplicationsOptions, getAllPublishedTemplatesOptions, getTemplatesForConnectedAppsOptions } from "./types";
 
 export class Apis extends Base {
   createLinkedAccount(createLinkedAccountPayload: createLinkedAccountPayload): Promise<LinkedAccount> {
@@ -18,14 +18,14 @@ export class Apis extends Base {
     });
   }
 
-  getAllPublishedTemplates( options?: paginationOptions): Promise<Templates> {
+  getAllPublishedTemplates( options?: getAllPublishedTemplatesOptions): Promise<Templates> {
     const params = {
       ...options
     }
     return this.request(`/api/v1/template/published`, {}, params);
   }
 
-  getTemplatesForConnectedApps(linked_account_id: string, options?: paginationOptions): Promise<Templates> {
+  getTemplatesForConnectedApps(linked_account_id: string, options?: getTemplatesForConnectedAppsOptions): Promise<Templates> {
     if(linked_account_id==="") throw new Error("linked_account_id is required")
     const params = {
       ...options,

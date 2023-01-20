@@ -57,9 +57,18 @@ export declare type getTokenForLinkedAccountPayload = {
 
 export declare interface paginationOptions {
   page?: number,
-  limit?: number,
-  associated_app_id?:string
+  limit?: number
 }
+
+export declare interface getAllPublishedTemplatesOptions extends paginationOptions {
+    app_id?:string,
+    app_type?:string
+}
+export declare interface getTemplatesForConnectedAppsOptions extends paginationOptions {
+  app_id?:string,
+  app_type?:string
+}
+
 export declare interface getApplicationsOptions extends paginationOptions  {
   for_published_template?: boolean
 }
