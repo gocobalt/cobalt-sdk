@@ -135,10 +135,17 @@ Client.getAllPublishedTemplates().then(data=>{
 })
 ```
 
-If you want to get templates consisting a particular application, you can specify the ```associated_app_id``` as a parameter.
+If you want to get templates consisting a particular application, you can specify the ```app_id``` or ```app_type``` as a parameter.
 ```JavaScript
 Client.getAllPublishedTemplates({
-    associated_app_id: "<application id>"
+    app_id: "<application id>"
+})
+```
+OR
+
+```JavaScript
+Client.getAllPublishedTemplates({
+    app_type: "<application Type eg; gmail, slack, etc>"
 })
 ```
 
@@ -159,6 +166,21 @@ Client.getTemplatesForConnectedApps("<linked_account_id>").then(data=>{
     console.log("error", e.message)
 })
 ```
+
+If you want to get templates consisting a particular application, you can specify the ```app_id``` or ```app_type``` as a parameter.
+```JavaScript
+Client.getTemplatesForConnectedApps({
+    app_id: "<application id>"
+})
+```
+OR
+
+```JavaScript
+Client.getTemplatesForConnectedApps({
+    app_type: "<application Type eg; gmail, slack, etc>"
+})
+```
+
 Use pagination by passing ```page``` and ```limit``` as parameters;
 ```JavaScript
 Client.getTemplatesForConnectedApps("<linked_account_id>", {
