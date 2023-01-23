@@ -169,14 +169,14 @@ Client.getTemplatesForConnectedApps("<linked_account_id>").then(data=>{
 
 If you want to get templates consisting a particular application, you can specify the ```app_id``` or ```app_type``` as a parameter.
 ```JavaScript
-Client.getTemplatesForConnectedApps({
+Client.getTemplatesForConnectedApps("<linked_account_id>", {
     app_id: "<application id>"
 })
 ```
 OR
 
 ```JavaScript
-Client.getTemplatesForConnectedApps({
+Client.getTemplatesForConnectedApps("<linked_account_id>", {
     app_type: "<application Type eg; gmail, slack, etc>"
 })
 ```
@@ -199,6 +199,20 @@ Client.getWorkflows("<linked_account_id>").then(data=>{
     console.log("error", e.message)
 })
 ```
+
+If you want to get workflows consisting a particular application, you can specify the ```app_id``` or ```app_type``` as a parameter.
+```JavaScript
+Client.getWorkflows("<linked_account_id>", {
+    app_id: "<application id>"
+})
+```
+OR
+
+```JavaScript
+Client.getWorkflows("<linked_account_id>", {
+    app_type: "<application Type eg; gmail, slack, etc>"
+})
+
 Use pagination by passing ```page``` and ```limit``` as parameters;
 ```JavaScript
 Client.getWorkflows("<linked_account_id>", {

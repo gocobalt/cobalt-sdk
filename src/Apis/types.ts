@@ -69,6 +69,11 @@ export declare interface getTemplatesForConnectedAppsOptions extends paginationO
   app_type?:string
 }
 
+export declare interface getWorkflowsOptions extends paginationOptions {
+  app_id?:string,
+  app_type?:string
+}
+
 export declare interface getApplicationsOptions extends paginationOptions  {
   for_published_template?: boolean
 }
