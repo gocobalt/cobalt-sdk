@@ -184,11 +184,6 @@ try{
 }catch(error){
     //Catch any error
 }
-Client.getApplications("<linked_account_id>").then(data=>{
-    console.log("data", data)
-}).catch(e=>{
-    console.log("error", e.message)
-})
 ```
 OR
 
