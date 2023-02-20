@@ -48,7 +48,15 @@ export declare type LinkedAccount = {
   }
 
 export declare type createLinkedAccountPayload = {
-    linked_account_id: string
+    linked_account_id: string,
+    payload?: {
+      name?: string,
+      udf?: Record<string, any>,
+      your_app?: {
+        app_id:string,
+        auth_credentials:Record<string, any>
+      }
+    }
 }
 
 export declare type getTokenForLinkedAccountPayload = {
@@ -84,4 +92,11 @@ export declare type getTokenForLinkedAccountResponse = {
 export declare type updateAuthCredentialsPayload = {
   linked_account_id: string,
   auth_credentials: any
+}
+
+export declare type webhookTriggerPayload = {
+  linked_account_id: string,
+  trigger: string,
+  config_id?: string,
+  data?:Record<string, any>
 }

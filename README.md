@@ -82,7 +82,47 @@ Once the Client has been initialized you can make use of Cobalt APIs for getting
 **Examples:**
 
 * **Create Linked Account** - ```createLinkedAccount```.
-This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Cobalt APIs. The api expects ```linked_account_id```. You can call the API like: 
+This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Cobalt APIs. The api expects ```linked_account_id``` as a mandatory field. Find below the list of parameters supported by the API:
+
+```
+linked_account_id (Mandatory): String,
+payload (Optional): {
+    name (Optional): String,
+    udf (Optional): Record<String, Any>,
+    your_app (Optional): {
+        app_id (Mandatory): String,
+        auth_credentials (Mandatory): Record<String, Any>
+    }
+}
+```
+
+ You can call the API like: 
+
+```Javascript
+try{
+    await Client.createLinkedAccount({
+        linked_account_id:"<Account Id of the user eg: example@some_email.com>",
+        payload:{
+            name: "<Name for the account>",
+            udf:{
+                "<Key name 1>":"<Data 1>",
+                "<Key name 2>":"<Data 2>",
+                "<Key name 3>":"<Data 3>"
+            },
+            app:{
+                app_id:"<Id of the app created in cobalt>",
+                auth_credentials:{
+                    "<Header Key eg; x-api-key or Authorization>": "<Value eg; Value for x-api-key or Bearer Ejy245f3dd4d1.....>"
+                }
+            }
+        }
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
 
 ```JavaScript
 Client.createLinkedAccount({
@@ -98,6 +138,18 @@ Client.createLinkedAccount({
 This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Cobalt APIs. The api expects ```linked_account_id```. You can call the API like: 
 
 ```JavaScript
+try{
+    const data = await Client.getTokenForLinkedAccount({
+        linked_account_id:"<Account Id of the user eg: example@someemail.com>"
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
 Client.getTokenForLinkedAccount({
     linked_account_id:"<Account Id of the user eg: example@someemail.com>"
 }).then(data=>{
@@ -107,132 +159,39 @@ Client.getTokenForLinkedAccount({
 })
 ```
 
-
-* **Update App Credentials for a Linked Account** - ```updateAuthCredentials```.
-This Api can be used if you do not want your users to authenticate while Configuring your cobalt app on your platform. This Api saves users' auth credentials required to access your platforms apis on behalf of your users. Call this API whenever you are generating new auth credentials for your user. The api expects ```linked_account_id```, ```app_id``` & ```auth_credentials```. You can call the API like: 
-
-```JavaScript
-Client.updateAuthCredentials("< app_id >", {
-    linked_account_id:"<Account Id of the user eg: example@someemail.com>",
-    auth_credentials: {
-        //example - Bearer Tokens
-        "Authorization": "Bearer <Some Token>"
-    }
-}).then(data=>{
-    console.log("data", data)
-}).catch(e=>{
-    console.log("error", e.message)
-})
-```
-
-* **Get All Published Templates** - ```getAllPublishedTemplates```.
-This API returns all published Cobalt Templates. You can call the API like: 
-```JavaScript
-Client.getAllPublishedTemplates().then(data=>{
-    console.log("data", data)
-}).catch(e=>{
-    console.log("error", e.message)
-})
-```
-
-If you want to get templates consisting a particular application, you can specify the ```app_id``` or ```app_type``` as a parameter.
-```JavaScript
-Client.getAllPublishedTemplates({
-    app_id: "<application id>"
-})
-```
-OR
-
-```JavaScript
-Client.getAllPublishedTemplates({
-    app_type: "<application Type eg; gmail, slack, etc>"
-})
-```
-
-Use pagination by passing ```page``` and ```limit``` as parameters;
-```JavaScript
-Client.getAllPublishedTemplates({
-    page:5,
-    limit:10
-})
-```
-
-* **Get All Templates for connected applications of a Linked Account** - ```getTemplatesForConnectedApps```.
-This API returns all published Cobalt Templates. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
-```JavaScript
-Client.getTemplatesForConnectedApps("<linked_account_id>").then(data=>{
-    console.log("data", data)
-}).catch(e=>{
-    console.log("error", e.message)
-})
-```
-
-If you want to get templates consisting a particular application, you can specify the ```app_id``` or ```app_type``` as a parameter.
-```JavaScript
-Client.getTemplatesForConnectedApps("<linked_account_id>", {
-    app_id: "<application id>"
-})
-```
-OR
-
-```JavaScript
-Client.getTemplatesForConnectedApps("<linked_account_id>", {
-    app_type: "<application Type eg; gmail, slack, etc>"
-})
-```
-
-Use pagination by passing ```page``` and ```limit``` as parameters;
-```JavaScript
-Client.getTemplatesForConnectedApps("<linked_account_id>", {
-    page:5,
-    limit:10
-})
-```
-
-
-* **Get All Workflows** - ```getAllWorkflows```. 
-This API returns all available Cobalt Workflows. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
-```JavaScript
-Client.getWorkflows("<linked_account_id>").then(data=>{
-    console.log("data", data)
-}).catch(e=>{
-    console.log("error", e.message)
-})
-```
-
-If you want to get workflows consisting a particular application, you can specify the ```app_id``` or ```app_type``` as a parameter.
-```JavaScript
-Client.getWorkflows("<linked_account_id>", {
-    app_id: "<application id>"
-})
-```
-OR
-
-```JavaScript
-Client.getWorkflows("<linked_account_id>", {
-    app_type: "<application Type eg; gmail, slack, etc>"
-})
-
-Use pagination by passing ```page``` and ```limit``` as parameters;
-```JavaScript
-Client.getWorkflows("<linked_account_id>", {
-    page:5,
-    limit:10
-})
-```
-You may pass additional query such as ```udf``` as a parameter;
-```Javascript
-Client.getWorkflows("<linked_account_id>", {
-    page:5,
-    limit:10,
-    udf:{
-        id1: "EVENTID-1"
-    }
-})
-```
-
 * **Get All Applications for a linked account** - ```getApplications```. 
-This API returns all available Cobalt Applications. The method expects a ```linked_account_id``` as the mandatory first argument. You can call the API like: 
+This API returns all available Cobalt Applications. The method expects a ```linked_account_id``` as the mandatory first argument. Find below the list of parameters supported by the API:
+
+```
+# First Argument
+linked_account_id (Mandatory): String
+
+#Second Argument
+options (Optional): {
+    page (Optional): number
+    limit (Optional): number
+}
+```
+
+You can call the API like: 
+```JavaScript
+
+try{
+    const data = await Client.getApplications("<linked_account_id>", {
+        page:5,
+        limit:10,
+    })
+}catch(error){
+    //Catch any error
+}
+Client.getApplications("<linked_account_id>").then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+OR
+
 ```JavaScript
 Client.getApplications("<linked_account_id>").then(data=>{
     console.log("data", data)
@@ -240,47 +199,58 @@ Client.getApplications("<linked_account_id>").then(data=>{
     console.log("error", e.message)
 })
 ```
-Use pagination by passing ```page``` and ```limit``` as parameters. By default the API provides all the applications for the linked account. However, if you want to get just the published applications, pass the ```for_published_template``` parameter as true in the options.
+Use pagination by passing ```page``` and ```limit``` as parameters. By default the API provides all the applications for the linked account.
 ```JavaScript
 Client.getApplications("<linked_account_id>", {
     page:5,
-    limit:10,
-    for_published_template:true
+    limit:10
 })
 ```
 
-* **Delete a Workflow** - ```getAllWorkflows```. 
-This API Deletes a Cobalt Workflow. The method expects a ```workflow_id``` as the mandatory first argument. You can call the API like: 
+* **Trigger a webhook event** - ```triggerWebhookEvent```.
+This Api triggers a webhook event created for your app. You first need to create the event on your Cobalt dashboard. Find below the list of parameters supported by the API:
+
+```
+linked_account_id (Mandatory): string,
+trigger (Mandatory): string,
+config_id (Optional): string,
+data (Optional):Record<string, any>
+``` 
+
 ```JavaScript
-Client.deleteWorkflow("<workflow_id>").then(data=>{
+try{
+    const data = await Client.triggerWebhookEvent({
+        linked_account_id:"<Account Id of the user eg: example@someemail.com>",
+        trigger: "Trigger 1",
+        config_id: "<Config Id, can be found on your Cobalt Dashboard>",
+        data: {
+            "<Key 1>": "<Value 1, Type: Any>",
+            "<Key 2>": "<Value 2, Type: Any>",
+            ...
+        }
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.triggerWebhookEvent({
+    linked_account_id:"<Account Id of the user eg: example@someemail.com>",
+    trigger: "Trigger 1",
+    config_id: "<Config Id, can be found on your Cobalt Dashboard>",
+    data: {
+        "<Key 1>": "<Value 1, Type: Any>",
+        "<Key 2>": "<Value 2, Type: Any>",
+        ...
+    }
+}).then(data=>{
     console.log("data", data)
 }).catch(e=>{
     console.log("error", e.message)
 })
-```
-
-
-## Using Async Await 
-
-Cobalt APis can be called using popular Async Await method too:
-
-```JavaScript
-await Client.createLinkedAccount({
-    linked_account_id:"<Account Id of the user eg: example@some_email.com>"
-})
-```
-
-Using Try Catch Block: 
-
-```JavaScript
-try{
-    const data = await Client.createLinkedAccount({
-                    linked_account_id:"<Account Id of the user eg: example@some_email.com>"
-                })
-    console.log(data) // {...data in json format}
-}catch(error){
-    console.log(error.message)
-}
 ```
 
 ## Getting Help
