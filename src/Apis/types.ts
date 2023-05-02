@@ -83,7 +83,7 @@ export declare interface getWorkflowsOptions extends paginationOptions {
 }
 
 export declare interface getApplicationsOptions extends paginationOptions  {
-  for_published_template?: boolean
+  slug?: string,
 }
 export declare type getTokenForLinkedAccountResponse = {
   token: string

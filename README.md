@@ -170,6 +170,7 @@ linked_account_id (Mandatory): String
 options (Optional): {
     page (Optional): number
     limit (Optional): number
+    slug (Optional): string
 }
 ```
 
@@ -180,6 +181,7 @@ try{
     const data = await Client.getApplications("<linked_account_id>", {
         page:5,
         limit:10,
+        slug:"slack"
     })
 }catch(error){
     //Catch any error
