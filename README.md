@@ -218,8 +218,8 @@ data (Optional):Record<string, any>
 try{
     const data = await Client.triggerWebhookEvent({
         linked_account_id:"<Account Id of the user eg: example@someemail.com>",
-        trigger: "Trigger 1",
-        config_id: "<Config Id, can be found on your Cobalt Dashboard>",
+        trigger_name: "Trigger 1",
+        installation_id: "<Installation Id, can be found on your Cobalt Dashboard>",
         data: {
             "<Key 1>": "<Value 1, Type: Any>",
             "<Key 2>": "<Value 2, Type: Any>",
@@ -236,8 +236,8 @@ OR
 ```JavaScript
 Client.triggerWebhookEvent({
     linked_account_id:"<Account Id of the user eg: example@someemail.com>",
-    trigger: "Trigger 1",
-    config_id: "<Config Id, can be found on your Cobalt Dashboard>",
+    trigger_name: "Trigger 1",
+    installation_id: "<Installation Id, can be found on your Cobalt Dashboard>",
     data: {
         "<Key 1>": "<Value 1, Type: Any>",
         "<Key 2>": "<Value 2, Type: Any>",
