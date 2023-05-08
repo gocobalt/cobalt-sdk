@@ -29,7 +29,7 @@ export class Apis extends Base {
     return this.request(`/api/v1/linked-acc/application`, {}, params);
   }
 
-  triggerWebhookEvent(payload:webhookTriggerPayload): Promise<any> {
+  event(payload:webhookTriggerPayload): Promise<any> {
     return this.request(`/api/v1/webhook/sdk-trigger`, {
       method: "POST",
       body: JSON.stringify(payload)

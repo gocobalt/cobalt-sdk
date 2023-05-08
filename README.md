@@ -204,21 +204,21 @@ Client.getApplications("<linked_account_id>", {
 })
 ```
 
-* **Trigger a webhook event** - ```triggerWebhookEvent```.
+* **Trigger a webhook event** - ```event```.
 This Api triggers a webhook event created for your app. You first need to create the event on your Cobalt dashboard. Find below the list of parameters supported by the API:
 
 ```
 linked_account_id (Mandatory): string,
 event (Mandatory): string,
-data (Optional):Record<string, any>
+payload (Optional):Record<string, any>
 ``` 
 
 ```JavaScript
 try{
-    const data = await Client.triggerWebhookEvent({
+    const data = await Client.event({
         linked_account_id:"<Account Id of the user eg: example@someemail.com>",
         event: "Event 1",
-        data: {
+        payload: {
             "<Key 1>": "<Value 1, Type: Any>",
             "<Key 2>": "<Value 2, Type: Any>",
             ...
@@ -232,10 +232,10 @@ try{
 OR
 
 ```JavaScript
-Client.triggerWebhookEvent({
+Client.event({
     linked_account_id:"<Account Id of the user eg: example@someemail.com>",
     event: "Event 1",
-    data: {
+    payload: {
         "<Key 1>": "<Value 1, Type: Any>",
         "<Key 2>": "<Value 2, Type: Any>",
         ...

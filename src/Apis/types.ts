@@ -97,5 +97,5 @@ export declare type updateAuthCredentialsPayload = {
 export declare type webhookTriggerPayload = {
   linked_account_id: string,
   event: string,
-  data?:Record<string, any>
+  payload?:Record<string, any>
 }
