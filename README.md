@@ -209,7 +209,7 @@ This Api triggers a webhook event created for your app. You first need to create
 
 ```
 linked_account_id (Mandatory): string,
-trigger (Mandatory): string,
+event (Mandatory): string,
 config_id (Optional): string,
 data (Optional):Record<string, any>
 ``` 
@@ -218,8 +218,7 @@ data (Optional):Record<string, any>
 try{
     const data = await Client.triggerWebhookEvent({
         linked_account_id:"<Account Id of the user eg: example@someemail.com>",
-        trigger_name: "Trigger 1",
-        installation_id: "<Installation Id, can be found on your Cobalt Dashboard>",
+        event: "Event 1",
         data: {
             "<Key 1>": "<Value 1, Type: Any>",
             "<Key 2>": "<Value 2, Type: Any>",
@@ -236,8 +235,7 @@ OR
 ```JavaScript
 Client.triggerWebhookEvent({
     linked_account_id:"<Account Id of the user eg: example@someemail.com>",
-    trigger_name: "Trigger 1",
-    installation_id: "<Installation Id, can be found on your Cobalt Dashboard>",
+    event: "Event 1",
     data: {
         "<Key 1>": "<Value 1, Type: Any>",
         "<Key 2>": "<Value 2, Type: Any>",
