@@ -210,7 +210,6 @@ This Api triggers a webhook event created for your app. You first need to create
 ```
 linked_account_id (Mandatory): string,
 event (Mandatory): string,
-config_id (Optional): string,
 data (Optional):Record<string, any>
 ``` 
 
