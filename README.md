@@ -210,6 +210,7 @@ This Api triggers a webhook event created for your app. You first need to create
 ```
 linked_account_id (Mandatory): string,
 event (Mandatory): string,
+config_id (Optional): string,
 payload (Optional):Record<string, any>
 ``` 
 
@@ -218,6 +219,7 @@ try{
     const data = await Client.event({
         linked_account_id:"<Account Id of the user eg: example@someemail.com>",
         event: "Event 1",
+        config_id:"config-1",
         payload: {
             "<Key 1>": "<Value 1, Type: Any>",
             "<Key 2>": "<Value 2, Type: Any>",
@@ -235,6 +237,7 @@ OR
 Client.event({
     linked_account_id:"<Account Id of the user eg: example@someemail.com>",
     event: "Event 1",
+    config_id:"config-1",
     payload: {
         "<Key 1>": "<Value 1, Type: Any>",
         "<Key 2>": "<Value 2, Type: Any>",
