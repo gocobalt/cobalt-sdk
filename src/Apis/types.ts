@@ -98,5 +98,6 @@ export declare type webhookTriggerPayload = {
   linked_account_id: string,
   event: string,
   config_id?: string,
+  slug?: string,
   payload?:Record<string, any>
 }

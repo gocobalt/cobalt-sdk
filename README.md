@@ -211,8 +211,10 @@ This Api triggers a webhook event created for your app. You first need to create
 linked_account_id (Mandatory): string,
 event (Mandatory): string,
 config_id (Optional): string,
+slug (Optional): string,
 payload (Optional):Record<string, any>
 ``` 
+>NOTE: Use ```slug``` parameter if you want to trigger only a specific application action with your trigger
 
 ```JavaScript
 try{
@@ -220,6 +222,7 @@ try{
         linked_account_id:"<Account Id of the user eg: example@someemail.com>",
         event: "Event 1",
         config_id:"config-1",
+        slug:"slack",
         payload: {
             "<Key 1>": "<Value 1, Type: Any>",
             "<Key 2>": "<Value 2, Type: Any>",
@@ -238,6 +241,7 @@ Client.event({
     linked_account_id:"<Account Id of the user eg: example@someemail.com>",
     event: "Event 1",
     config_id:"config-1",
+    slug:"slack",
     payload: {
         "<Key 1>": "<Value 1, Type: Any>",
         "<Key 2>": "<Value 2, Type: Any>",
