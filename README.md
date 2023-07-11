@@ -184,6 +184,7 @@ Client.upsertLinkedAccount({
 This API is used to Migrate Auth Object (API keys, Access Tokens, etc;) of an application to an integration in Cobalt. Find below the list of parameters supported by the API:
 
 ```
+linked_account_id (Mandatory): String,
 slug: String (Mandatory) - Application Slug,
 
 auth_object: Record (Mandatory) - Object containing Tokens or Keys of application that needs to be migrated to Cobalt's existing integration of the same application. For example, auth_object for Gmail must consist either of access_token, refresh_token or both.
@@ -194,6 +195,7 @@ auth_object: Record (Mandatory) - Object containing Tokens or Keys of applicatio
 ```Javascript
 try{
     await Client.migrateAuth({
+        "linked_account_id":"<Account Id of the user eg: example@some_email.com>",
         "slug":"gmail",
         "auth_object":{
             "refresh_token":"<Some valid Refresh Token>"
@@ -208,6 +210,7 @@ OR
 
 ```JavaScript
 Client.migrateAuth({
+    "linked_account_id":"<Account Id of the user eg: example@some_email.com>",
     "slug":"gmail",
     "auth_object":{
         "refresh_token":"<Some valid Refresh Token>"

@@ -58,6 +58,7 @@ export declare type createLinkedAccountPayload = {
 }
 
 export declare type migrateAuthPayload = {
+  linked_account_id: string,
   slug: string,
   auth_object: Record<string, string>
 }
@@ -116,11 +117,11 @@ export declare type updateConfigPayload = {
   linked_account_id: string,
   slug:string,
   config_id?: string,
-  fields?:Record<string, Record<string, string>>,
+  fields?:Record<string, string|Record<string, string>>,
   workflows?:Array<{
     id: string,
     enabled: boolean,
-    fields: Record<string, string>
+    fields: Record<string, string|Record<string, string>>
   }>
 }
 

@@ -21,10 +21,13 @@ export class Apis extends Base {
   }
 
   migrateAuth(payload: migrateAuthPayload): Promise<any> {
+    const params = {
+      linked_account_id: payload.linked_account_id
+    }
     return this.request(`/api/v2/public/migrate-token`,{
       method: "PUT",
       body: JSON.stringify(payload),
-    });
+    }, params);
   }
 
   getTokenForLinkedAccount(payload:getTokenForLinkedAccountPayload): Promise<getTokenForLinkedAccountResponse> {
@@ -100,7 +103,7 @@ export class Apis extends Base {
       linked_account_id: payload.linked_account_id
     }
     
-    return this.request(`/api/v2/public/config/${payload.config_id}`, {
+    return this.request(`/api/v2/public/config`, {
       method: "POST",
       body: JSON.stringify(payload)
     }, params);
@@ -113,7 +116,7 @@ export class Apis extends Base {
       linked_account_id: payload.linked_account_id
     }
     
-    return this.request(`/api/v2/public/config/${payload.config_id}`, {
+    return this.request(`/api/v2/public/config`, {
       method: "PUT",
       body: JSON.stringify(payload)
     }, params);

@@ -27,7 +27,7 @@ export abstract class Base {
       "x-api-key": this.apiKey,
     };
 
-    if(params.linked_account_id){
+    if(params && params.linked_account_id){
       headers["linked_account_id"] = params.linked_account_id
     }
 
@@ -38,15 +38,14 @@ export abstract class Base {
       params
     };
 
-    
     return axios(url, config).then((response) => {
       if (response.data) {
         return response.data;
       }
       throw new Error("Something went wrong!")
     }).catch(error=>{
-      if(error?.response?.data.error){
-        throw new Error(error.response.data.error);
+      if(error?.response?.data?.message){
+        throw new Error(error.response.data.message);
       }
       throw new Error(error);
     });
