@@ -82,17 +82,15 @@ Once the Client has been initialized you can make use of Cobalt APIs for getting
 **Examples:**
 
 * **Create Linked Account** - ```createLinkedAccount```.
-This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Cobalt APIs. The api expects ```linked_account_id``` as a mandatory field. Find below the list of parameters supported by the API:
+This Api creates a linked account. Linked accounts are the users for whos behalf you'd be calling the Cobalt APIs. The api expects ```linked_account_id``` as a mandatory field. Find below the list of parameters supported by the API:
 
 ```
 linked_account_id (Mandatory): String,
-payload (Optional): {
-    name (Optional): String,
-    udf (Optional): Record<String, Any>,
-    your_app (Optional): {
-        app_id (Mandatory): String,
-        auth_credentials (Mandatory): Record<String, Any>
-    }
+name (Optional): String,
+udf (Optional): Record<String, Any>,
+your_app (Optional): {
+    app_id (Mandatory): String,
+    auth_credentials (Mandatory): Record<String, Any>
 }
 ```
 
@@ -102,18 +100,16 @@ payload (Optional): {
 try{
     await Client.createLinkedAccount({
         linked_account_id:"<Account Id of the user eg: example@some_email.com>",
-        payload:{
-            name: "<Name for the account>",
-            udf:{
-                "<Key name 1>":"<Data 1>",
-                "<Key name 2>":"<Data 2>",
-                "<Key name 3>":"<Data 3>"
-            },
-            app:{
-                app_id:"<Id of the app created in cobalt>",
-                auth_credentials:{
-                    "<Header Key eg; x-api-key or Authorization>": "<Value eg; Value for x-api-key or Bearer Ejy245f3dd4d1.....>"
-                }
+        name: "<Name for the account>",
+        udf:{
+            "<Key name 1>":"<Data 1>",
+            "<Key name 2>":"<Data 2>",
+            "<Key name 3>":"<Data 3>"
+        },
+        your_app:{
+            app_id:"<Id of the app created in cobalt>",
+            auth_credentials:{
+                "<Header Key eg; x-api-key or Authorization>": "<Value eg; Value for x-api-key or Bearer Ejy245f3dd4d1.....>"
             }
         }
     })
@@ -134,8 +130,104 @@ Client.createLinkedAccount({
 })
 ```
 
+* **Upsert Linked Account** - ```upsertLinkedAccount```.
+This Api creates a linked account or updates a Linked Account if it already exists. Linked accounts are the users for whos behalf you'd be calling the Cobalt APIs. The api expects ```linked_account_id``` as a mandatory field. Find below the list of parameters supported by the API:
+
+```
+linked_account_id (Mandatory): String,
+name (Optional): String,
+udf (Optional): Record<String, Any>,
+your_app (Optional): {
+    app_id (Mandatory): String,
+    auth_credentials (Mandatory): Record<String, Any>
+}
+```
+
+ You can call the API like: 
+
+```Javascript
+try{
+    await Client.upsertLinkedAccount({
+        linked_account_id:"<Account Id of the user eg: example@some_email.com>",
+        name: "<Name for the account>",
+        udf:{
+            "<Key name 1>":"<Data 1>",
+            "<Key name 2>":"<Data 2>",
+            "<Key name 3>":"<Data 3>"
+        },
+        your_app:{
+            app_id:"<Id of the app created in cobalt>",
+            auth_credentials:{
+                "<Header Key eg; x-api-key or Authorization>": "<Value eg; Value for x-api-key or Bearer Ejy245f3dd4d1.....>"
+            }
+        }
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.upsertLinkedAccount({
+    linked_account_id:"<Linked account Id of the user eg: example@some_email.com>"
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+
+* **Migrate Auth Object for an application** - ```migrateAuth```.
+This API is used to Migrate Auth Object (API keys, Access Tokens, etc;) of an application to an integration in Cobalt. Find below the list of parameters supported by the API:
+
+```
+slug: String (Mandatory) - Application Slug,
+
+auth_object: Record (Mandatory) - Object containing Tokens or Keys of application that needs to be migrated to Cobalt's existing integration of the same application. For example, auth_object for Gmail must consist either of access_token, refresh_token or both.
+```
+
+ You can call the API like: 
+
+```Javascript
+try{
+    await Client.migrateAuth({
+        "slug":"gmail",
+        "auth_object":{
+            "refresh_token":"<Some valid Refresh Token>"
+        }
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.migrateAuth({
+    "slug":"gmail",
+    "auth_object":{
+        "refresh_token":"<Some valid Refresh Token>"
+    }
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
 * **Get Token For A Linked Account** - ```getTokenForLinkedAccount```.
-This is probably the first api that you'd be using. This Api creates a Linked Account for the user for whos behalf you'd be calling the Cobalt APIs. The api expects ```linked_account_id```. You can call the API like: 
+TThis API provided a session token to authenticate a linked account.Find below the list of parameters supported by the API: 
+
+```
+linked_account_id (Mandatory): String
+
+```
+
+You can call the API like:
 
 ```JavaScript
 try{
@@ -170,7 +262,6 @@ linked_account_id (Mandatory): String
 options (Optional): {
     page (Optional): number
     limit (Optional): number
-    slug (Optional): string
 }
 ```
 
@@ -180,8 +271,7 @@ You can call the API like:
 try{
     const data = await Client.getApplications("<linked_account_id>", {
         page:5,
-        limit:10,
-        slug:"slack"
+        limit:10
     })
 }catch(error){
     //Catch any error
@@ -199,6 +289,80 @@ Client.getApplications("<linked_account_id>").then(data=>{
 Use pagination by passing ```page``` and ```limit``` as parameters. By default the API provides all the applications for the linked account.
 ```JavaScript
 Client.getApplications("<linked_account_id>", {
+    page:5,
+    limit:10
+})
+```
+
+
+* **Get an application by slug for a linked account** - ```getApplicationBySlug```. 
+This API Returns Applications by "slug" for any Linked account. Find below the list of parameters supported by the API:
+
+```
+# First Argument
+linked_account_id (Mandatory): String
+
+# First Argument
+slug (Mandatory): String
+```
+
+You can call the API like: 
+```JavaScript
+
+try{
+    const data = await Client.getApplicationBySlug("<linked_account_id>","<application slug eg: slack>")
+}catch(error){
+    //Catch any error
+}
+```
+OR
+
+```JavaScript
+Client.getApplicationBySlug("<linked_account_id>","<application slug eg: slack>").then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+* **Get all executions for a linked account** - ```getExecutions```. 
+This API provides total executions for all workflows for a linked account. Find below the list of parameters supported by the API:
+
+```
+# First Argument
+linked_account_id (Mandatory): String
+
+#Second Argument
+options (Optional): {
+    page (Optional): number
+    limit (Optional): number
+}
+```
+
+You can call the API like: 
+```JavaScript
+
+try{
+    const data = await Client.getExecutions("<linked_account_id>", {
+        page:5,
+        limit:10
+    })
+}catch(error){
+    //Catch any error
+}
+```
+OR
+
+```JavaScript
+Client.getExecutions("<linked_account_id>").then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+Use pagination by passing ```page``` and ```limit``` as parameters. By default the API provides all the applications for the linked account.
+```JavaScript
+Client.getExecutions("<linked_account_id>", {
     page:5,
     limit:10
 })
@@ -247,6 +411,223 @@ Client.event({
         "<Key 2>": "<Value 2, Type: Any>",
         ...
     }
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+
+* **Get a config** - ```getConfig```.
+This API gets a specified config. It requires x-api-key and linked_account_id as mandatory parameters. Find below the list of parameters supported by the API:
+
+```
+linked_account_id (Mandatory): string,
+slug (Mandatory): string,
+config_id (Optional): string
+``` 
+
+```JavaScript
+try{
+    const data = await Client.getConfig({
+        "linked_account_id":"<Account Id of the user eg: example@someemail.com>",
+        "slug": "Application slug eg: mailerlite",
+        "config_id": "existing config id eg: config_1"
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.getConfig({
+    "linked_account_id":"<Account Id of the user eg: example@someemail.com>",
+    "slug": "Application slug eg: mailerlite",
+    "config_id": "existing config id eg: config_1"
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+
+* **Find or Create a config** - ```findOrCreateConfig```.
+This API returns the specified config, or creates one if it doesn't exist. Find below the list of parameters supported by the API:
+
+```
+linked_account_id (Mandatory): string,
+slug (Mandatory): string,
+config_id (Optional): string,
+labels (Optional):Record<string, Record<string, string>[]>
+``` 
+
+```JavaScript
+try{
+    const data = await Client.findOrCreateConfig({
+        "linked_account_id":"<Account Id of the user eg: example@someemail.com>",
+        "slug": "mailerlite",
+        "config_id": "config_1",
+        "labels": {
+            "yourApp_fields": [
+                {
+                    "name": "Customer Name",
+                    "value": "app_var_name"
+                },
+                {
+                    "name": "Customer Last Name",
+                    "value": "app_var_last_name"
+                }
+            ]
+        }
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.findOrCreateConfig({
+    "linked_account_id":"<Account Id of the user eg: example@someemail.com>",
+    "slug": "mailerlite",
+    "config_id": "config_1",
+    "labels": {
+        "yourApp_fields": [
+            {
+                "name": "Customer Name",
+                "value": "app_var_name"
+            },
+            {
+                "name": "Customer Last Name",
+                "value": "app_var_last_name"
+            }
+        ]
+    }
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+* **Update a config** - ```updateConfig```.
+This API update the specified config. It requires x-api-key and linked_account_id as mandatory parameters. Find below the list of parameters supported by the API:
+
+```
+linked_account_id (Mandatory): string,
+slug (Mandatory): string,
+config_id (Optional): string,
+fields (Optional):Record<string, string|Record<string, string>>,
+workflows (Optional):Array<{
+    id: string,
+    enabled: boolean,
+    fields: Record<string, string|Record<string, string>>
+  }>
+``` 
+
+```JavaScript
+try{
+    const data = await Client.updateConfig({
+        "linked_account_id":"<Account Id of the user eg: example@someemail.com>",
+        "slug": "Application slug eg: mailerlite",
+        "config_id": "existing config id eg: config_1",
+        "fields": {
+            "field_id eg:646473c7e7b74deee820458f":{
+                "you_app_variable_1":"mapped value 1",
+                "you_app_variable_2":"mapped value 2",
+                ....
+            },
+            "field_id eg:646473c7e7b74deee820459a":"Value"
+        },
+        "workflows":[
+            {
+                "id":"Workflow Id eg: 649d230c2ce6b9b07b163e61",
+                "enabled":true, // if enabling the workflow else false
+                "fields": {
+                    "field_id eg:646473c7e7b74deee820458f":{
+                        "you_app_variable_1":"mapped value 1",
+                        "you_app_variable_2":"mapped value 2",
+                        ....
+                    },
+                    "field_id eg:646473c7e7b74deee820459a":"Value"
+                },
+            }
+        ]
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.updateConfig({
+    "linked_account_id":"<Account Id of the user eg: example@someemail.com>",
+    "slug": "Application slug eg: mailerlite",
+    "config_id": "existing config id eg: config_1",
+     "fields": {
+        "field_id eg:646473c7e7b74deee820458f":{
+            "you_app_variable_1":"mapped value 1",
+            "you_app_variable_2":"mapped value 2",
+            ....
+        },
+        "field_id eg:646473c7e7b74deee820459a":"Value"
+    },
+    "workflows":[
+        {
+            "id":"Workflow Id eg: 649d230c2ce6b9b07b163e61",
+            "enabled":true, // if enabling the workflow else false
+             "fields": {
+                "field_id eg:646473c7e7b74deee820458f":{
+                    "you_app_variable_1":"mapped value 1",
+                    "you_app_variable_2":"mapped value 2",
+                    ....
+                },
+                "field_id eg:646473c7e7b74deee820459a":"Value"
+            },
+        }
+    ]
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+* **Delete a config** - ```deleteConfig```.
+This API deletes the specified config. It requires x-api-key and linked_account_id as mandatory parameters. Find below the list of parameters supported by the API:
+
+```
+linked_account_id (Mandatory): string,
+slug (Mandatory): string,
+config_id (Optional): string
+``` 
+
+```JavaScript
+try{
+    const data = await Client.deleteConfig({
+        "linked_account_id":"<Account Id of the user eg: example@someemail.com>",
+        "slug": "Application slug eg: mailerlite",
+        "config_id": "existing config id eg: config_1"
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.deleteConfig({
+    "linked_account_id":"<Account Id of the user eg: example@someemail.com>",
+    "slug": "Application slug eg: mailerlite",
+    "config_id": "existing config id eg: config_1"
 }).then(data=>{
     console.log("data", data)
 }).catch(e=>{

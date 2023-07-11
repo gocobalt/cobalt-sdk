@@ -27,6 +27,10 @@ export abstract class Base {
       "x-api-key": this.apiKey,
     };
 
+    if(params.linked_account_id){
+      headers["linked_account_id"] = params.linked_account_id
+    }
+
     const config = {
       ...options,
       data:options?.body,
