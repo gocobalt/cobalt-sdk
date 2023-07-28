@@ -1,6 +1,6 @@
 {
   "name": "@cobaltio/cobalt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SDK from Cobalt to access integration apis",
   "main": "dist/index.js",
   "module": "dist/index.m.js",
