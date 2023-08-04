@@ -458,7 +458,7 @@ Client.getConfig({
 ```
 
 
-* **Find or Create a config** - ```findOrCreateConfig```.
+* **Find or Create a config** - ```config```.
 This API returns the specified config, or creates one if it doesn't exist. Find below the list of parameters supported by the API:
 
 ```
@@ -470,7 +470,7 @@ labels (Optional):Record<string, Record<string, string>[]>
 
 ```JavaScript
 try{
-    const data = await Client.findOrCreateConfig({
+    const data = await Client.config({
         "linked_account_id":"<Account Id of the user eg: example@someemail.com>",
         "slug": "mailerlite",
         "config_id": "config_1",
@@ -495,7 +495,7 @@ try{
 OR
 
 ```JavaScript
-Client.findOrCreateConfig({
+Client.config({
     "linked_account_id":"<Account Id of the user eg: example@someemail.com>",
     "slug": "mailerlite",
     "config_id": "config_1",

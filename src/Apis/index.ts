@@ -96,7 +96,7 @@ export class Apis extends Base {
     }, params);
   }
 
-  findOrCreateConfig(payload:findOrCreateConfig): Promise<any> {
+  config(payload:findOrCreateConfig): Promise<any> {
     if(payload.linked_account_id==="") throw new Error("linked_account_id is required")
     if(payload.slug==="") throw new Error("slug is required")
     const params = {
