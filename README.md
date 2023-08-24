@@ -1,4 +1,4 @@
-# Cobalt SDK
+# Cobalt NodeJS SDK
 
 With Cobalt you can Integrate workflows with your favourite cloud applications. Create processes and bring teams, tools, customers together so business can run on autopilot and more confidently—all on a single platform. 
 
