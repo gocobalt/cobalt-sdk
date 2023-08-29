@@ -11,7 +11,7 @@
     "default": "./dist/index.modern.js"
   },
   "scripts": {
-    "docs": "npx typedoc src/index.ts",
+    "docs": "npx typedoc src/index.ts src/Apis/types.ts",
     "build": "rm -rf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
     "dev": "microbundle --watch --tsconfig tsconfig.json --no-sourcemap",
     "test": "npm run build && echo \"TEST DONE\""
