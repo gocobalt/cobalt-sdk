@@ -1,6 +1,6 @@
 # Cobalt NodeJS SDK
 
-With Cobalt you can Integrate workflows with your favourite cloud applications. Create processes and bring teams, tools, customers together so business can run on autopilot and more confidently—all on a single platform. 
+With Cobalt you can Integrate workflows with your favourite cloud applications. Create processes and bring teams, tools, customers together so business can run on autopilot and more confidently—all on a single platform.
 
 _Visit **[gocobalt.io](https://www.gocobalt.io/ "Cobalt Home")** for more details_
 
@@ -94,7 +94,7 @@ your_app (Optional): {
 }
 ```
 
- You can call the API like: 
+ You can call the API like:
 
 ```Javascript
 try{
@@ -143,7 +143,7 @@ your_app (Optional): {
 }
 ```
 
- You can call the API like: 
+ You can call the API like:
 
 ```Javascript
 try{
@@ -190,7 +190,7 @@ slug: String (Mandatory) - Application Slug,
 auth_object: Record (Mandatory) - Object containing Tokens or Keys of application that needs to be migrated to Cobalt's existing integration of the same application. For example, auth_object for Gmail must consist either of access_token, refresh_token or both.
 ```
 
- You can call the API like: 
+ You can call the API like:
 
 ```Javascript
 try{
@@ -223,7 +223,7 @@ Client.migrateAuth({
 ```
 
 * **Get Token For A Linked Account** - ```getTokenForLinkedAccount```.
-TThis API provided a session token to authenticate a linked account.Find below the list of parameters supported by the API: 
+TThis API provided a session token to authenticate a linked account.Find below the list of parameters supported by the API:
 
 ```
 linked_account_id (Mandatory): String
@@ -254,7 +254,7 @@ Client.getTokenForLinkedAccount({
 })
 ```
 
-* **Get All Applications for a linked account** - ```getApplications```. 
+* **Get All Applications for a linked account** - ```getApplications```.
 This API returns all available Cobalt Applications. The method expects a ```linked_account_id``` as the mandatory first argument. Find below the list of parameters supported by the API:
 
 ```
@@ -268,14 +268,11 @@ options (Optional): {
 }
 ```
 
-You can call the API like: 
+You can call the API like:
 ```JavaScript
 
 try{
-    const data = await Client.getApplications("<linked_account_id>", {
-        page:5,
-        limit:10
-    })
+    const data = await Client.getApplications("<linked_account_id>")
 }catch(error){
     //Catch any error
 }
@@ -291,14 +288,11 @@ Client.getApplications("<linked_account_id>").then(data=>{
 ```
 Use pagination by passing ```page``` and ```limit``` as parameters. By default the API provides all the applications for the linked account.
 ```JavaScript
-Client.getApplications("<linked_account_id>", {
-    page:5,
-    limit:10
-})
+Client.getApplications("<linked_account_id>")
 ```
 
 
-* **Get an application by slug for a linked account** - ```getApplicationBySlug```. 
+* **Get an application by slug for a linked account** - ```getApplicationBySlug```.
 This API Returns Applications by "slug" for any Linked account. Find below the list of parameters supported by the API:
 
 ```
@@ -309,7 +303,7 @@ linked_account_id (Mandatory): String
 slug (Mandatory): String
 ```
 
-You can call the API like: 
+You can call the API like:
 ```JavaScript
 
 try{
@@ -328,7 +322,7 @@ Client.getApplicationBySlug("<linked_account_id>","<application slug eg: slack>"
 })
 ```
 
-* **Get all executions for a linked account** - ```getExecutions```. 
+* **Get all executions for a linked account** - ```getExecutions```.
 This API provides total executions for all workflows for a linked account. Find below the list of parameters supported by the API:
 
 ```
@@ -342,7 +336,7 @@ options (Optional): {
 }
 ```
 
-You can call the API like: 
+You can call the API like:
 ```JavaScript
 
 try{
@@ -380,7 +374,7 @@ event (Mandatory): string,
 config_id (Optional): string,
 slug (Optional): string,
 payload (Optional):Record<string, any>
-``` 
+```
 >NOTE: Use ```slug``` parameter if you want to trigger only a specific application action with your trigger
 
 ```JavaScript
@@ -429,7 +423,7 @@ This API gets a specified config. It requires x-api-key and linked_account_id as
 linked_account_id (Mandatory): string,
 slug (Mandatory): string,
 config_id (Optional): string
-``` 
+```
 
 ```JavaScript
 try{
@@ -466,7 +460,7 @@ linked_account_id (Mandatory): string,
 slug (Mandatory): string,
 config_id (Optional): string,
 labels (Optional):Record<string, Record<string, string>[]>
-``` 
+```
 
 ```JavaScript
 try{
@@ -531,7 +525,7 @@ workflows (Optional):Array<{
     enabled: boolean,
     fields: Record<string, string|Record<string, string>>
   }>
-``` 
+```
 
 ```JavaScript
 try{
@@ -610,7 +604,7 @@ This API deletes the specified config. It requires x-api-key and linked_account_
 linked_account_id (Mandatory): string,
 slug (Mandatory): string,
 config_id (Optional): string
-``` 
+```
 
 ```JavaScript
 try{
