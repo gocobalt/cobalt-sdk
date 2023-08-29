@@ -260,12 +260,6 @@ This API returns all available Cobalt Applications. The method expects a ```link
 ```
 # First Argument
 linked_account_id (Mandatory): String
-
-#Second Argument
-options (Optional): {
-    page (Optional): number
-    limit (Optional): number
-}
 ```
 
 You can call the API like:
