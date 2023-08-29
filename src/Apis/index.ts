@@ -1,7 +1,7 @@
 import { Base } from "../base";
 import { LinkedAccount, Templates, Workflows, createLinkedAccountPayload,
-         getTokenForLinkedAccountPayload, getTokenForLinkedAccountResponse, 
-         templateObj, paginationOptions, updateAuthCredentialsPayload, getApplicationsOptions, 
+         getTokenForLinkedAccountPayload, getTokenForLinkedAccountResponse,
+         templateObj, paginationOptions, updateAuthCredentialsPayload, getApplicationsOptions,
          getAllPublishedTemplatesOptions, getTemplatesForConnectedAppsOptions, getWorkflowsOptions,
          webhookTriggerPayload, migrateAuthPayload, findOrCreateConfig, updateConfigPayload, deleteConfigPayload } from "./types";
 
@@ -37,10 +37,9 @@ export class Apis extends Base {
     });
   }
 
-  getApplications(linked_account_id: string, options?: paginationOptions): Promise<any> {
+  getApplications(linked_account_id: string): Promise<any> {
     if(linked_account_id==="") throw new Error("linked_account_id is required")
     const params = {
-      ...options,
       linked_account_id
     }
     return this.request(`/api/v2/public/application`, {}, params);
@@ -89,7 +88,7 @@ export class Apis extends Base {
     const params = {
       linked_account_id: payload.linked_account_id
     }
-    
+
     return this.request(`/api/v2/public/slug/${payload.slug}/config/${payload.config_id?payload.config_id:""}`, {
       method: "GET",
       body: JSON.stringify(payload)
@@ -102,7 +101,7 @@ export class Apis extends Base {
     const params = {
       linked_account_id: payload.linked_account_id
     }
-    
+
     return this.request(`/api/v2/public/config`, {
       method: "POST",
       body: JSON.stringify(payload)
@@ -115,7 +114,7 @@ export class Apis extends Base {
     const params = {
       linked_account_id: payload.linked_account_id
     }
-    
+
     return this.request(`/api/v2/public/config`, {
       method: "PUT",
       body: JSON.stringify(payload)
@@ -128,7 +127,7 @@ export class Apis extends Base {
     const params = {
       linked_account_id: payload.linked_account_id
     }
-    
+
     return this.request(`/api/v2/public/slug/${payload.slug}/config/${payload.config_id?payload.config_id:""}`, {
       method: "DELETE",
       body: JSON.stringify(payload)
