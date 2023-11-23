@@ -130,3 +130,21 @@ export declare type deleteConfigPayload = {
   slug: string,
   config_id?: string,
 }
+
+export declare type createWebhookPayload = {
+  webhook_url: string,
+  webhook_events: Array<string>,
+}
+
+export declare type subscribeWebhookPayload = {
+  webhook_events: Array<string>,
+}
+export declare type unsubscribeWebhookPayload = {
+  webhook_event: string,
+}
+
+export declare type updateEventPayload = {
+  event_id:string
+  name: string,
+  response:Record<string, any>
+}

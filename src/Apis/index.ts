@@ -3,7 +3,7 @@ import { LinkedAccount, Templates, Workflows, createLinkedAccountPayload,
          getTokenForLinkedAccountPayload, getTokenForLinkedAccountResponse,
          templateObj, paginationOptions, updateAuthCredentialsPayload, getApplicationsOptions,
          getAllPublishedTemplatesOptions, getTemplatesForConnectedAppsOptions, getWorkflowsOptions,
-         webhookTriggerPayload, migrateAuthPayload, findOrCreateConfig, updateConfigPayload, deleteConfigPayload } from "./types";
+         webhookTriggerPayload, migrateAuthPayload, findOrCreateConfig, updateConfigPayload, deleteConfigPayload, createWebhookPayload, subscribeWebhookPayload, unsubscribeWebhookPayload, updateEventPayload } from "./types";
 
 export class Apis extends Base {
   createLinkedAccount(createLinkedAccountPayload: createLinkedAccountPayload): Promise<LinkedAccount> {
@@ -17,6 +17,26 @@ export class Apis extends Base {
     return this.request(`/api/v2/public/linked-account`,{
       method: "PUT",
       body: JSON.stringify(upsertLinkedAccountPayload),
+    });
+  }
+
+  getAllLinkedAccounts(options?: paginationOptions): Promise<any> {
+    const params = {
+      ...options
+    }
+    return this.request(`/api/v2/public/linked-account`, {}, params);
+  }
+
+  getLinkedAccountById(linked_account_id: string): Promise<any> {
+    if(linked_account_id==="") throw new Error("linked_account_id is required")
+    return this.request(`/api/v2/public/linked-account/${linked_account_id}`, {});
+  }
+
+  deleteLinkedAccount(linked_account_id: string): Promise<any> {
+    if(linked_account_id==="") throw new Error("linked_account_id is required")
+
+    return this.request(`/api/v2/public/linked-account/${linked_account_id}`, {
+      method: "DELETE",
     });
   }
 
@@ -63,6 +83,14 @@ export class Apis extends Base {
     return this.request(`/api/v2/public/executions`, {}, params);
   }
 
+  getExecutionById(linked_account_id: string, execution_id:string): Promise<any> {
+    if(linked_account_id==="") throw new Error("linked_account_id is required")
+    const params = {
+      linked_account_id
+    }
+    return this.request(`/api/v2/public/execution/${execution_id}`, {}, params);
+  }
+  
   event(payload:webhookTriggerPayload): Promise<any> {
     if(payload.linked_account_id==="") throw new Error("linked_account_id is required")
     const params = {
@@ -76,6 +104,43 @@ export class Apis extends Base {
       method: "POST",
       body: JSON.stringify(payload)
     }, params);
+  }
+
+  updateEvent(payload:updateEventPayload): Promise<any> {
+
+    return this.request(`/api/v2/public/event/${payload.event_id}`, {
+      method: "PUT",
+      body: JSON.stringify(payload)
+    });
+  }
+
+  deleteEvent(event_id:string): Promise<any> {
+    return this.request(`/api/v2/public/event/${event_id}`, {
+      method: "DELETE",
+    });
+  }
+
+  triggerEvent(payload:webhookTriggerPayload): Promise<any> {
+    if(payload.linked_account_id==="") throw new Error("linked_account_id is required")
+    const params = {
+      linked_account_id: payload.linked_account_id
+    }
+    let api = `/api/v2/public/event/trigger`
+    if(payload?.slug && payload.slug!==""){
+      api=`/api/v2/public/event/${payload.slug}`
+    }
+    return this.request(api, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    }, params);
+  }
+
+  listEvents(): Promise<any> {
+    return this.request(`/api/v2/public/event`, {});
+  }
+
+  listEventById( event_id:string): Promise<any> {
+    return this.request(`/api/v2/public/event/${event_id}`, {});
   }
 
   getConfig(payload:{
@@ -133,4 +198,38 @@ export class Apis extends Base {
       body: JSON.stringify(payload)
     }, params);
   }
+
+  getWebhook(): Promise<any> {
+    return this.request(`/api/v2/public/webhook`, {
+      method: "GET",
+    });
+  }
+
+  createWebhook(payload:createWebhookPayload): Promise<any> {
+    return this.request(`/api/v2/public/webhook`, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
+  }
+
+  deleteWebhook(): Promise<any> {
+    return this.request(`/api/v2/public/webhook`, {
+      method: "DELETE"
+    });
+  }
+
+  subscribeWebhookEvents(payload:subscribeWebhookPayload): Promise<any> {
+    return this.request(`/api/v2/public/webhook/subscribe`, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
+  }
+  
+  unsubscribeWebhookEvent(payload:unsubscribeWebhookPayload): Promise<any> {
+    return this.request(`/api/v2/public/webhook/unsubscribe`, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
+  }
+  
 }
