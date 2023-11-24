@@ -80,7 +80,7 @@ export class Apis extends Base {
       ...options,
       linked_account_id
     }
-    return this.request(`/api/v2/public/executions`, {}, params);
+    return this.request(`/api/v2/public/execution`, {}, params);
   }
 
   getExecutionById(linked_account_id: string, execution_id:string): Promise<any> {
@@ -224,7 +224,7 @@ export class Apis extends Base {
       body: JSON.stringify(payload)
     });
   }
-  
+
   unsubscribeWebhookEvent(payload:unsubscribeWebhookPayload): Promise<any> {
     return this.request(`/api/v2/public/webhook/unsubscribe`, {
       method: "POST",
