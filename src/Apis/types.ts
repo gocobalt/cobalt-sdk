@@ -39,6 +39,9 @@ export declare type GetLinkedAccount = {
     environment: string;
     name: string;
     integrations?: Integration[];
+    udf?: Record<string, any>,
+    createdAt: string;
+    updatedAt: string;
 };
 
 export declare type GetAllLinkedAccounts = {
@@ -183,15 +186,27 @@ export declare type deleteConfigPayload = {
 }
 
 export declare type GetExecutions= {
-  _id: string;
-  createdAt: string;
   name: string;
-  associated_application: string;
+  nodes?: WorkflowNode[];
   status: string;
-  associated_workflow: string;
+  createdAt: string;
+  linked_account_id: string;
+  org_id: string;
   environment: string;
   config_id: string;
-  associated_event_id: string;
+}
+
+export interface WorkflowNode {
+  node_id: string;
+  is_batch: boolean;
+  maximum_attempts: number;
+  attempts_made: number;
+  input_data?: string;
+  latest_output: string;
+  execution_time: number;
+  node_name: string;
+  node_type: string;
+  node_status: string;
 }
 
 export declare type Events= {
@@ -203,6 +218,7 @@ export declare type Events= {
   }[];
   raw_response: string;
 }
+
 
 export declare type createWebhookPayload = {
   webhook_url: string,
