@@ -1,6 +1,6 @@
 {
   "name": "@cobaltio/cobalt",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "SDK from Cobalt to access integration apis",
   "main": "dist/index.js",
   "module": "dist/index.m.js",
@@ -50,10 +50,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Cobalt-Embed/Cobalt-sdk.git"
+    "url": "git+https://github.com/gocobalt/cobalt-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/Cobalt-Embed/Cobalt-sdk/issues"
+    "url": "https://github.com/gocobalt/cobalt-sdk/issues"
   },
-  "homepage": "https://github.com/Cobalt-Embed/Cobalt-sdk#readme"
+  "homepage": "https://gocobalt.github.io/cobalt-sdk/"
 }
