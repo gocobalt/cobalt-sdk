@@ -1,6 +1,6 @@
 {
   "name": "@cobaltio/cobalt",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "SDK from Cobalt to access integration apis",
   "main": "dist/index.js",
   "module": "dist/index.m.js",
@@ -12,7 +12,7 @@
   },
   "scripts": {
     "docs": "npx typedoc src/index.ts src/Apis/types.ts",
-    "build": "rm -rf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
+    "build": "microbundle --tsconfig tsconfig.json --no-sourcemap",
     "dev": "microbundle --watch --tsconfig tsconfig.json --no-sourcemap",
     "test": "npm run build && echo \"TEST DONE\""
   },
@@ -46,7 +46,7 @@
     "typescript": "4.7.4"
   },
   "dependencies": {
-    "axios": "^0.27.2"
+    "axios": "^1.7.2"
   },
   "repository": {
     "type": "git",
