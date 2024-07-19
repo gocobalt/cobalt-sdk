@@ -231,5 +231,22 @@ export class Apis extends Base {
       body: JSON.stringify(payload)
     });
   }
+
+  executeWorkflow<T extends boolean>(workflow_id:string,slug:string,linked_acc:string,sync_execution:T,payload:any) :Promise<T extends false? {
+    execution_id: string,
+  }: {
+    execution_id: string,
+    return_value?: any
+  }> {
+    return this.request(`/api/v1/workflow/${workflow_id}/execute`, {
+      method : "POST",
+    body: JSON.stringify(payload),
+     headers: {
+        "linked_account_id": linked_acc,
+        "slug": slug,
+        "sync_execution": sync_execution?"true":"false"
+     }
+    });
+  }
   
 }
