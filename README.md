@@ -603,46 +603,6 @@ Client.deleteEvent({
 })
 ```
 
-* **Trigger an event** - ```triggerEvent```.
-This API triggers an event. Find below the list of parameters supported by the API:
-
-```JavaScript
-event_id (Mandatory): string,
-payload (Optional): Record<string, any>
-```
-
-```JavaScript
-try{
-    const data = await Client.triggerEvent({
-        event_id:"<Event Id of the event>",
-        payload: {
-            "<Key 1>": "<Value 1, Type: Any>",
-            "<Key 2>": "<Value 2, Type: Any>",
-            ...
-        }
-    })
-}catch(error){
-    //Catch any error
-}
-```
-
-OR
-
-```JavaScript
-Client.triggerEvent({
-    event_id:"<Event Id of the event>",
-    payload: {
-        "<Key 1>": "<Value 1, Type: Any>",
-        "<Key 2>": "<Value 2, Type: Any>",
-        ...
-    }
-}).then(data=>{
-    console.log("data", data)
-}).catch(e=>{
-    console.log("error", e.message)
-})
-```
-
 * **List events** - ```listEvents```.
 This API lists all events. Find below the list of parameters supported by the API:
 
@@ -1039,7 +999,7 @@ Client.unsubscribeWebhookEvents({
 This API executes a workflow. It requires x-api-key and linked_account_id as mandatory parameters. Find below the list of parameters supported by the API:
 
 ```
-workflow_id (Mandatory): string,
+workflow_id/workflow_alias (Mandatory): string,
 slug (Mandatory): string,
 linked_acc (Mandatory): string,
 sync_execution (Mandatory): boolean,
@@ -1049,7 +1009,7 @@ payload (Mandatory): Record<string, any>
 ```JavaScript
 try{
     const data = await Client.executeWorkflow({
-        "workflow_id":"<Workflow Id>",
+        "workflow_id":"<Workflow Id Or workflow alias>",
         "slug": "Application slug eg: mailerlite",
         "linked_acc": "linked_account_id",
         "sync_execution": true,
