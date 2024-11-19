@@ -179,6 +179,96 @@ Client.upsertLinkedAccount({
 })
 ```
 
+* **Get all linked accounts** - ```getAllLinkedAccounts```.
+This API returns all linked accounts. Find below the list of parameters supported by the API:
+
+```JavaScript
+# First Argument
+options (Optional): {
+    page (Optional): number
+    limit (Optional): number
+}
+```
+
+You can call the API like:
+```JavaScript
+try{
+    const data = await Client.getAllLinkedAccounts({
+        page:5,
+        limit:10
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.getAllLinkedAccounts({
+    page:5,
+    limit:10
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+* **Get a linked account** - ```getLinkedAccountById```.
+This API returns a linked account by id. Find below the list of parameters supported by the API:
+
+```JavaScript
+# First Argument
+linked_account_id (Mandatory): String
+```
+
+You can call the API like:
+```JavaScript
+try{
+    const data = await Client.getLinkedAccountById("<linked_account_id>")
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.getLinkedAccountById("<linked_account_id>").then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+* **Delete a linked account** - ```deleteLinkedAccount```.
+This API deletes a linked account. Find below the list of parameters supported by the API:
+
+```JavaScript
+# First Argument
+linked_account_id (Mandatory): String
+```
+
+You can call the API like:
+```JavaScript
+try{
+    const data = await Client.deleteLinkedAccount("<linked_account_id>")
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.deleteLinkedAccount("<linked_account_id>").then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
 
 * **Migrate Auth Object for an application** - ```migrateAuth```.
 This API is used to Migrate Auth Object (API keys, Access Tokens, etc;) of an application to an integration in Cobalt. Find below the list of parameters supported by the API:
@@ -280,7 +370,6 @@ Client.getApplications("<linked_account_id>").then(data=>{
     console.log("error", e.message)
 })
 ```
-Use pagination by passing ```page``` and ```limit``` as parameters. By default the API provides all the applications for the linked account.
 ```JavaScript
 Client.getApplications("<linked_account_id>")
 ```
@@ -345,7 +434,10 @@ try{
 OR
 
 ```JavaScript
-Client.getExecutions("<linked_account_id>").then(data=>{
+Client.getExecutions("<linked_account_id>", {
+        page:5,
+        limit:10
+    }).then(data=>{
     console.log("data", data)
 }).catch(e=>{
     console.log("error", e.message)
@@ -353,9 +445,39 @@ Client.getExecutions("<linked_account_id>").then(data=>{
 ```
 Use pagination by passing ```page``` and ```limit``` as parameters. By default the API provides all the applications for the linked account.
 ```JavaScript
-Client.getExecutions("<linked_account_id>", {
+await Client.getExecutions("<linked_account_id>", {
     page:5,
     limit:10
+})
+```
+
+* **Get execution by id for a linked account** - ```getExecutionById```.
+This API provides an execution by id for a linked account. Find below the list of parameters supported by the API:
+
+```JavaScript
+# First Argument
+linked_account_id (Mandatory): String
+
+#Second Argument
+execution_id (Mandatory): String
+```
+
+You can call the API like:
+```JavaScript
+
+try{
+    const data = await Client.getExecutionById("<linked_account_id>","<execution_id>")
+}catch(error){
+    //Catch any error
+}
+```
+OR
+
+```JavaScript
+Client.getExecutionById("<linked_account_id>","<execution_id>").then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
 })
 ```
 
@@ -408,6 +530,182 @@ Client.event({
     console.log("error", e.message)
 })
 ```
+
+* **Update an event** - ```updateEvent```.
+This API updates an event. Find below the list of parameters supported by the API:
+
+```JavaScript
+event_id (Mandatory): string,
+name (Mandatory): string,
+response (Mandatory): Record<string, any>,
+```
+
+```JavaScript
+try{
+    const data = await Client.updateEvent({
+        event_id:"<Event Id of the event>",
+        name: "Event 1",
+        response: {
+            "<Key 1>": "<Value 1, Type: Any>",
+            "<Key 2>": "<Value 2, Type: Any>",
+            ...
+        }
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.updateEvent({
+    event_id:"<Event Id of the event>",
+    name: "Event 1",
+    response: {
+        "<Key 1>": "<Value 1, Type: Any>",
+        "<Key 2>": "<Value 2, Type: Any>",
+        ...
+    }
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+* **Delete an event** - ```deleteEvent```.
+This API deletes an event. Find below the list of parameters supported by the API:
+
+```JavaScript
+event_id (Mandatory): string
+```
+
+```JavaScript
+try{
+    const data = await Client.deleteEvent({
+        event_id:"<Event Id of the event>"
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.deleteEvent({
+    event_id:"<Event Id of the event>"
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+* **Trigger an event** - ```triggerEvent```.
+This API triggers an event. Find below the list of parameters supported by the API:
+
+```JavaScript
+event_id (Mandatory): string,
+payload (Optional): Record<string, any>
+```
+
+```JavaScript
+try{
+    const data = await Client.triggerEvent({
+        event_id:"<Event Id of the event>",
+        payload: {
+            "<Key 1>": "<Value 1, Type: Any>",
+            "<Key 2>": "<Value 2, Type: Any>",
+            ...
+        }
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.triggerEvent({
+    event_id:"<Event Id of the event>",
+    payload: {
+        "<Key 1>": "<Value 1, Type: Any>",
+        "<Key 2>": "<Value 2, Type: Any>",
+        ...
+    }
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+* **List events** - ```listEvents```.
+This API lists all events. Find below the list of parameters supported by the API:
+
+```JavaScript
+# First Argument
+options (Optional): {
+    page (Optional): number
+    limit (Optional): number
+}
+```
+
+You can call the API like:
+```JavaScript
+try{
+    const data = await Client.listEvents({
+        page:5,
+        limit:10
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.listEvents({
+    page:5,
+    limit:10
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+* **List event by id** - ```listEventById```.
+This API lists an event by id. Find below the list of parameters supported by the API:
+
+```JavaScript
+# First Argument
+event_id (Mandatory): string
+```
+
+You can call the API like:
+```JavaScript
+try{
+    const data = await Client.listEventById("<event_id>")
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.listEventById("<event_id>").then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
 
 
 * **Get a config** - ```getConfig```.
@@ -624,6 +922,146 @@ Client.deleteConfig({
 }).catch(e=>{
     console.log("error", e.message)
 })
+```
+
+* **Get a webhook** - ```getWebhook```.
+This API gets a specified webhook. It requires x-api-key and linked_account_id as mandatory parameters. Find below the list of parameters supported by the API:
+
+```JavaScript
+try{
+    const data = await Client.getWebhook();
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.getWebhook().then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+* **Create a webhook** - ```createWebhook```.
+This API creates a webhook. It requires x-api-key and linked_account_id as mandatory parameters. Find below the list of parameters supported by the API:
+
+```
+webhook_url (Mandatory): string,
+webhook_events (Mandatory): Array<string>
+```
+
+```JavaScript
+try{
+    const data = await Client.createWebhook({
+        "webhook_url":"<Webhook URL>",
+        "events":["event1","event2"]
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.createWebhook({
+    "webhook_url":"<Webhook URL>",
+    "events":["event1","event2"]
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+* **Subscribe webhook events** - ```subscribeWebhookEvents```.
+This API subscribes to webhook events. It requires x-api-key and linked_account_id as mandatory parameters. Find below the list of parameters supported by the API:
+
+```
+webhook_events (Mandatory): Array<string>
+```
+
+```JavaScript
+try{
+    const data = await Client.subscribeWebhookEvents({
+        "events":["event1","event2"]
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.subscribeWebhookEvents({
+    "events":["event1","event2"]
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+* **Unsubscribe webhook events** - ```unsubscribeWebhookEvents```.
+This API unsubscribes to webhook events. It requires x-api-key and linked_account_id as mandatory parameters. Find below the list of parameters supported by the API:
+
+```
+webhook_events (Mandatory): Array<string>
+```
+
+```JavaScript
+try{
+    const data = await Client.unsubscribeWebhookEvents({
+        "events":["event1","event2"]
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.unsubscribeWebhookEvents({
+    "events":["event1","event2"]
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
+* **Execute a workflow** - ```executeWorkflow```.
+This API executes a workflow. It requires x-api-key and linked_account_id as mandatory parameters. Find below the list of parameters supported by the API:
+
+```
+workflow_id (Mandatory): string,
+slug (Mandatory): string,
+linked_acc (Mandatory): string,
+sync_execution (Mandatory): boolean,
+payload (Mandatory): Record<string, any>
+```
+
+```JavaScript
+try{
+    const data = await Client.executeWorkflow({
+        "workflow_id":"<Workflow Id>",
+        "slug": "Application slug eg: mailerlite",
+        "linked_acc": "linked_account_id",
+        "sync_execution": true,
+        "payload": {
+            "<Key 1>": "<Value 1, Type: Any>",
+            "<Key 2>": "<Value 2, Type: Any>",
+            ...
+        }
+    })
+}catch(error){
+    //Catch any error
+}
 ```
 
 ## Getting Help
