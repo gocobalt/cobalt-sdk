@@ -96,13 +96,16 @@ export class Apis extends Base {
     const params = {
       linked_account_id: payload.linked_account_id
     }
-    let api = `/api/v2/public/event`
+    let api = `/api/v2/public/event`;
     if(payload?.slug && payload.slug!==""){
       api=`/api/v2/public/event/${payload.slug}`
     }
     return this.request(api, {
       method: "POST",
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      headers: {
+        config_id: payload.config_id
+      }
     }, params);
   }
 
