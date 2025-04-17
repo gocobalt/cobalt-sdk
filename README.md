@@ -59,7 +59,8 @@ TypeScript :
 import Cobalt from '@cobaltio/cobalt';
 
 const Client:Cobalt = new Cobalt({
-    apiKey:"<Your Api Key>"
+    apiKey: "<Your Api Key>",
+    server_url: "https://api.gocobalt.io", // optional
 });
 ```
 
@@ -68,7 +69,8 @@ JavaScript :
 const Cobalt = require('@cobaltio/cobalt');
 
 const Client = new Cobalt({
-    apiKey:"<Your Api Key>"
+    apiKey: "<Your Api Key>",
+    server_url: "https://api.gocobalt.io", // optional
 });
 ```
 
