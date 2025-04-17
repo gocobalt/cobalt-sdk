@@ -6,15 +6,18 @@ type Config =   { apiKey: string;
   /** @deprecated use environment field instead for specifying the environment */ 
   sandbox?: boolean; 
   environment?: Environment 
+  server_url?: string
 }
 
 export abstract class Base {
   private apiKey: string;
   private sandbox: boolean | null = null;
   private environment: Environment | null = null
+  private server_url: string | null = null
 
   constructor(config: Config) {
     this.apiKey = config.apiKey;
+    this.server_url = config.server_url;
     if ('sandbox' in config && config.sandbox !== undefined) {
       if ('environment' in config && config.environment !== undefined) {
         throw new Error("You can't use both environment and sandbox fields together");
@@ -30,23 +33,16 @@ export abstract class Base {
   protected request<T>(endpoint: string, options?: RequestInit, params?:any): Promise<T> {
     let url:string;
 
-    if (this.environment === null && this.sandbox === null) {
-        url = `https://api.gocobalt.io${endpoint}`;
-    }
-
-    if(this.sandbox===true){
-        url = `https://embedapi.gocobalt.io${endpoint}`;
-    }else{
-        url = `https://api.gocobalt.io${endpoint}`;
-    }
-
-    if (this.environment === "staging"){
+    if (this.server_url) {
+      url = `${this.server_url}${endpoint}`;
+    } else if (this.environment === "staging") {
       url = `https://sapis.gocobalt.io${endpoint}`;
-    }else if (this.environment === "sandbox"){
+    } else if (this.environment === "sandbox" || this.sandbox === true) {
       url = `https://embedapi.gocobalt.io${endpoint}`;
-    }else if (this.environment === "production"){
-      url = `https://api.gocobalt.io${endpoint}`;
+    } else {
+      url = `https://api.gocobalt.io${endpoint}`; // default to production
     }
+
 
     const headers = {
       "Content-Type": "application/json",
