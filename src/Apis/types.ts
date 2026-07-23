@@ -122,8 +122,6 @@ export declare type getTokenForLinkedAccountPayload = {
 
 export declare type generatePatTokenForLinkedAccountPayload = {
   linked_account_id: string,
-  is_api_token?: boolean,
-  ttl_seconds?: number,
   utm_params?: Record<string, string>
 }
 

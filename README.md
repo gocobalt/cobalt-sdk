@@ -351,12 +351,8 @@ This API generates a personal access token to authenticate a linked account, and
 
 ```
 linked_account_id (Mandatory): String,
-is_api_token (Optional): boolean,
-ttl_seconds (Optional): number,
 utm_params (Optional): Record<string, string>
 ```
-
->NOTE: ```is_api_token: true``` generates an infinite (non-expiring) token, no ```refresh_token``` returned. ```ttl_seconds``` generates a token with custom expiry (in seconds) instead of the default; ignored when ```is_api_token``` is ```true```.
 
 You can call the API like:
 
