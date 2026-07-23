@@ -120,6 +120,11 @@ export declare type getTokenForLinkedAccountPayload = {
   linked_account_id: string, 
 }
 
+export declare type generatePatTokenForLinkedAccountPayload = {
+  linked_account_id: string,
+  utm_params?: Record<string, string>
+}
+
 export declare interface paginationOptions {
   page?: number,
   limit?: number

@@ -346,6 +346,48 @@ Client.getTokenForLinkedAccount({
 })
 ```
 
+* **Generate a PAT token for a linked account** - ```generatePatTokenForLinkedAccount```.
+This API generates a personal access token to authenticate a linked account, and forwards UTM parameters so audit logs correctly attribute the linked account and UTM data for events triggered with this token. Find below the list of parameters supported by the API:
+
+```
+linked_account_id (Mandatory): String,
+utm_params (Optional): Record<string, string>
+```
+
+You can call the API like:
+
+```JavaScript
+try{
+    const data = await Client.generatePatTokenForLinkedAccount({
+        linked_account_id:"<Account Id of the user eg: example@someemail.com>",
+        utm_params:{
+            "utm_source":"<Source>",
+            "utm_medium":"<Medium>",
+            "utm_campaign":"<Campaign>"
+        }
+    })
+}catch(error){
+    //Catch any error
+}
+```
+
+OR
+
+```JavaScript
+Client.generatePatTokenForLinkedAccount({
+    linked_account_id:"<Account Id of the user eg: example@someemail.com>",
+    utm_params:{
+        "utm_source":"<Source>",
+        "utm_medium":"<Medium>",
+        "utm_campaign":"<Campaign>"
+    }
+}).then(data=>{
+    console.log("data", data)
+}).catch(e=>{
+    console.log("error", e.message)
+})
+```
+
 * **Get All Applications for a linked account** - ```getApplications```.
 This API returns all available Cobalt Applications. The method expects a ```linked_account_id``` as the mandatory first argument. Find below the list of parameters supported by the API:
 

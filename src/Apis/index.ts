@@ -1,6 +1,6 @@
 import { Base } from "../base";
 import { LinkedAccount, Templates, Workflows, createLinkedAccountPayload,
-         getTokenForLinkedAccountPayload, getTokenForLinkedAccountResponse,
+         getTokenForLinkedAccountPayload, getTokenForLinkedAccountResponse, generatePatTokenForLinkedAccountPayload,
          templateObj, paginationOptions, updateAuthCredentialsPayload, getApplicationsOptions,
          getAllPublishedTemplatesOptions, getTemplatesForConnectedAppsOptions, getWorkflowsOptions,
          webhookTriggerPayload, migrateAuthPayload, findOrCreateConfig, updateConfigPayload, deleteConfigPayload, createWebhookPayload, subscribeWebhookPayload, unsubscribeWebhookPayload, updateEventPayload, GetLinkedAccount, GetAllLinkedAccounts, SuccessResponse, ErrorResponse, GetExecutions, Webhook, Events } from "./types";
@@ -52,6 +52,13 @@ export class Apis extends Base {
 
   getTokenForLinkedAccount(payload:getTokenForLinkedAccountPayload): Promise<getTokenForLinkedAccountResponse> {
     return this.request(`/api/v2/public/session-token`,{
+      method: "POST",
+      body: JSON.stringify(payload),
+    });
+  }
+
+  generatePatTokenForLinkedAccount(payload:generatePatTokenForLinkedAccountPayload): Promise<getTokenForLinkedAccountResponse> {
+    return this.request(`/api/v1/auth-service/api-token`,{
       method: "POST",
       body: JSON.stringify(payload),
     });
